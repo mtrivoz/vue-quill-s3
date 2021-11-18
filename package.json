@@ -10,8 +10,9 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:natpkq/vue-quill-s3.git"
+    "url": "git@github.com:natpkg/vue-quill-s3.git"
   },
+  "homepage": "https://github.com/natpkg/vue-quill-s3",
   "files": [
     "dist/*",
     "src/**/*.vue"
