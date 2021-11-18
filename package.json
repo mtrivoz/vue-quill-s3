@@ -1,11 +1,17 @@
 {
   "name": "@natpkg/vue-quill-s3",
   "version": "1.0.0",
-  "description": "",
+  "description": "vue, quill, s3, Wysiwyg",
   "main": "dist/vue-quill-s3.ssr.js",
   "browser": "dist/vue-quill-s3.esm.js",
   "module": "dist/vue-quill-s3.esm.js",
   "unpkg": "dist/vue-quill-s3.min.js",
+  "author": "natpkg",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:natpkq/vue-quill-s3.git"
+  },
   "files": [
     "dist/*",
     "src/**/*.vue"
