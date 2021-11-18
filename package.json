@@ -1,6 +1,6 @@
 {
   "name": "@natpkg/vue-quill-s3",
-  "version": "1.0.2",
+  "version": "1.0.0",
   "description": "vue, quill, s3, Wysiwyg",
   "main": "dist/vue-quill-s3.ssr.js",
   "browser": "dist/vue-quill-s3.esm.js",
