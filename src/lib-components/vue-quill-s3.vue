@@ -92,19 +92,18 @@ export default {
   mounted() {},
 };
 </script>
-<style src="./index.css" lang="css" scoped />
+
 <style scoped>
+@import "./quill.core.css";
+@import "./quill.snow.css";
+@import "./quill.bubble.css";
+
 ::v-deep .ql-container {
   font-size: inherit;
   font-family: inherit;
 }
 </style>
 <style>
-/* button.ql-showHtml:after {
-  content: "[HTML]";
-   font-weight: 700;
-} */
-
 .ql-editor {
   font-size: 16px;
 }

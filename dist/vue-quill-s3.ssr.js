@@ -7219,7 +7219,7 @@ var __vue_inject_styles__$1 = undefined;
 var __vue_scope_id__$1 = undefined;
 /* module identifier */
 
-var __vue_module_identifier__$1 = "data-v-982e65c6";
+var __vue_module_identifier__$1 = "data-v-b5106594";
 /* functional template */
 
 var __vue_is_functional_template__$1 = false;
@@ -7393,15 +7393,11 @@ var __vue_staticRenderFns__ = [];
 
 var __vue_inject_styles__ = function __vue_inject_styles__(inject) {
   if (!inject) return;
-  inject("data-v-d2e903c0_0", {
-    source: "",
+  inject("data-v-65507dfe_0", {
+    source: "[data-v-65507dfe] .ql-container{font-size:inherit;font-family:inherit}",
     map: undefined,
     media: undefined
-  }), inject("data-v-d2e903c0_1", {
-    source: "[data-v-d2e903c0] .ql-container{font-size:inherit;font-family:inherit}",
-    map: undefined,
-    media: undefined
-  }), inject("data-v-d2e903c0_2", {
+  }), inject("data-v-65507dfe_1", {
     source: ".ql-editor{font-size:16px}.ql-snow .ql-stroke.ql-thin,.ql-snow .ql-thin{stroke-width:1px!important}.quillWrapper .ql-snow.ql-toolbar{padding-top:8px;padding-bottom:4px}.quillWrapper .ql-snow.ql-toolbar button{margin:1px}.quillWrapper .ql-snow.ql-toolbar .ql-formats{margin-bottom:10px}.ql-snow .ql-toolbar button svg,.quillWrapper .ql-snow.ql-toolbar button svg{width:22px;height:22px}.quillWrapper .ql-editor ul[data-checked=false]>li::before,.quillWrapper .ql-editor ul[data-checked=true]>li::before{font-size:1.35em;vertical-align:baseline;bottom:-.065em;font-weight:900;color:#222}.quillWrapper .ql-snow .ql-stroke{stroke:rgba(63,63,63,.95);stroke-linecap:square;stroke-linejoin:initial;stroke-width:1.7px}.quillWrapper .ql-picker-label{font-size:15px}.quillWrapper .ql-snow .ql-active .ql-stroke{stroke-width:2.25px}.quillWrapper .ql-toolbar.ql-snow .ql-formats{vertical-align:top}.image-uploading{position:relative;display:inline-block}.image-uploading img{max-width:98%!important;filter:blur(5px);opacity:.3}.image-uploading::before{content:\"\";box-sizing:border-box;position:absolute;top:50%;left:50%;width:30px;height:30px;margin-top:-15px;margin-left:-15px;border-radius:50%;border:3px solid #ccc;border-top-color:#1e986c;z-index:1;animation:spinner .6s linear infinite}@keyframes spinner{to{transform:rotate(360deg)}}",
     map: undefined,
     media: undefined
@@ -7410,10 +7406,10 @@ var __vue_inject_styles__ = function __vue_inject_styles__(inject) {
 /* scoped */
 
 
-var __vue_scope_id__ = "data-v-d2e903c0";
+var __vue_scope_id__ = "data-v-65507dfe";
 /* module identifier */
 
-var __vue_module_identifier__ = "data-v-d2e903c0";
+var __vue_module_identifier__ = "data-v-65507dfe";
 /* functional template */
 
 var __vue_is_functional_template__ = false;

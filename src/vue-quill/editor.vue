@@ -6,9 +6,6 @@
 </template>
 <script>
 import _Quill from "quill";
-// import "quill/dist/quill.core.css";
-// import "quill/dist/quill.snow.css";
-// import "quill/dist/quill.bubble.css";
 import forEach from "lodash/forEach";
 import { ICON_SVGS } from "./icons.js";
 import axios from "axios";
