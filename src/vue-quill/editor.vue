@@ -5,32 +5,32 @@
   </div>
 </template>
 <script>
-import _Quill from 'quill';
-import 'node_modules/quill/dist/quill.core.css';
-import 'node_modules/quill/dist/quill.snow.css';
-import 'node_modules/quill/dist/quill.bubble.css';
-import forEach from 'lodash/forEach';
-import { ICON_SVGS } from './icons.js';
-import axios from 'axios';
+import _Quill from "quill";
+// import "quill/dist/quill.core.css";
+// import "quill/dist/quill.snow.css";
+// import "quill/dist/quill.bubble.css";
+import forEach from "lodash/forEach";
+import { ICON_SVGS } from "./icons.js";
+import axios from "axios";
 
 // import ImageUploader from 'quill-image-uploader';
-import ImageUploader from '../image-uploader/quill.imageUploader.js';
-_Quill.register('modules/imageUploader', ImageUploader);
+import ImageUploader from "../image-uploader/quill.imageUploader.js";
+_Quill.register("modules/imageUploader", ImageUploader);
 // import ImageResize from '../image-size/ImageResize';
-import ImageResize from 'quill-image-resize-module-withfix';
-_Quill.register('modules/imageResize', ImageResize);
+import ImageResize from "quill-image-resize-module-withfix";
+_Quill.register("modules/imageResize", ImageResize);
 
-import QuillHtmlSourceButton from '../view-source/index'
-_Quill.register('modules/htmlSource', QuillHtmlSourceButton)
+import QuillHtmlSourceButton from "../view-source/index";
+_Quill.register("modules/htmlSource", QuillHtmlSourceButton);
 
 const Quill = window.Quill || _Quill;
 
 // pollfill
-if (typeof Object.assign != 'function') {
-  Object.defineProperty(Object, 'assign', {
+if (typeof Object.assign != "function") {
+  Object.defineProperty(Object, "assign", {
     value(target) {
       if (target == null) {
-        throw new TypeError('Cannot convert undefined or null to object');
+        throw new TypeError("Cannot convert undefined or null to object");
       }
       const to = Object(target);
       for (let index = 1; index < arguments.length; index++) {
@@ -51,13 +51,13 @@ if (typeof Object.assign != 'function') {
 }
 
 export default {
-  name: 'quill-editor',
+  name: "quill-editor",
   data() {
     return {
       _options: {},
-      _content: '',
+      _content: "",
       defaultOptions: {
-        theme: 'snow',
+        theme: "snow",
         modules: {
           table: true,
           imageResize: {},
@@ -67,35 +67,35 @@ export default {
           htmlSource: {},
           toolbar: {
             container: [
-              ['bold', 'italic', 'underline', 'strike'],
-              ['blockquote', 'code-block'],
-              [{ list: 'ordered' }, { list: 'bullet' }],
-              [{ script: 'super' }],
-              [{ indent: '-1' }, { indent: '+1' }],
-              [{ size: ['small', false, 'large', 'huge'] }],
+              ["bold", "italic", "underline", "strike"],
+              ["blockquote", "code-block"],
+              [{ list: "ordered" }, { list: "bullet" }],
+              [{ script: "super" }],
+              [{ indent: "-1" }, { indent: "+1" }],
+              [{ size: ["small", false, "large", "huge"] }],
               [{ header: [1, 2, 3, 4, 5, 6, false] }],
               [{ color: [] }, { background: [] }],
               [{ align: [] }],
-              ['link', 'image'],
+              ["link", "image"],
               [
-                { table: 'TD' },
-                { 'table-insert-row': 'TIR' },
-                { 'table-insert-column': 'TIC' },
-                { 'table-delete-row': 'TDR' },
-                { 'table-delete-column': 'TDC' },
+                { table: "TD" },
+                { "table-insert-row": "TIR" },
+                { "table-insert-column": "TIC" },
+                { "table-delete-row": "TDR" },
+                { "table-delete-column": "TDC" },
               ],
-              ['showHtml'],
+              ["showHtml"],
             ],
             handlers: {
               table: this.actTableHandler,
-              'table-insert-row': this.actTableInsertRowHandler,
-              'table-insert-column': this.actTableInsertColumnHandler,
-              'table-delete-row': this.actTableDeleteRowHandler,
-              'table-delete-column': this.actTableDeleteColumnHandler
+              "table-insert-row": this.actTableInsertRowHandler,
+              "table-insert-column": this.actTableInsertColumnHandler,
+              "table-delete-row": this.actTableDeleteRowHandler,
+              "table-delete-column": this.actTableDeleteColumnHandler,
             },
           },
         },
-        placeholder: this.placeholder || 'Insert text here ...',
+        placeholder: this.placeholder || "Insert text here ...",
         readOnly: false,
       },
       quill: _Quill,
@@ -134,7 +134,7 @@ export default {
   },
   methods: {
     initCustomToolbarIcon() {
-      let icons = Quill.import('ui/icons');
+      let icons = Quill.import("ui/icons");
 
       forEach(ICON_SVGS, (iconValue, iconName) => {
         icons[iconName] = iconValue;
@@ -157,12 +157,12 @@ export default {
         if (this.value || this.content) {
           const delta = this.value || this.content;
           if (Array.isArray(delta)) {
-            this.quill.setContents(delta, 'silent');
+            this.quill.setContents(delta, "silent");
           } else {
             const htmlData = this.quill.clipboard.convert({
               html: delta,
             });
-            this.quill.setContents(htmlData, 'silent');
+            this.quill.setContents(htmlData, "silent");
           }
         }
 
@@ -170,90 +170,90 @@ export default {
           this.quill.enable(true);
         }
 
-        this.quill.on('selection-change', (range) => {
+        this.quill.on("selection-change", (range) => {
           if (!range) {
-            this.$emit('blur', this.quill);
+            this.$emit("blur", this.quill);
           } else {
-            this.$emit('focus', this.quill);
+            this.$emit("focus", this.quill);
           }
         });
 
-        this.quill.on('text-change', (delta, oldDelta, source) => {
+        this.quill.on("text-change", (delta, oldDelta, source) => {
           let html = this.$refs.editor.children[0].innerHTML;
           const quill = this.quill;
           const text = this.quill.getText();
-          if (html === '<p><br></p>') html = '';
+          if (html === "<p><br></p>") html = "";
           this._content = html;
           // this.$emit('input', this._content);
-          this.$emit('change', { html, text, quill });
+          this.$emit("change", { html, text, quill });
         });
 
-        this.$emit('ready', this.quill);
+        this.$emit("ready", this.quill);
       }
     },
 
     actTableHandler() {
-      this.quill.getModule('table').insertTable(2, 3);
+      this.quill.getModule("table").insertTable(2, 3);
     },
 
     actTableInsertRowHandler() {
-      this.quill.getModule('table').insertRowBelow();
+      this.quill.getModule("table").insertRowBelow();
     },
 
     actTableInsertColumnHandler() {
-      this.quill.getModule('table').insertColumnRight();
+      this.quill.getModule("table").insertColumnRight();
     },
 
     actTableDeleteRowHandler() {
-      this.quill.getModule('table').deleteRow();
+      this.quill.getModule("table").deleteRow();
     },
 
     actTableDeleteColumnHandler() {
-      this.quill.getModule('table').deleteColumn();
+      this.quill.getModule("table").deleteColumn();
     },
 
     actImageUploadHandler(file) {
       return new Promise((resolve, reject) => {
         const { type, name } = file;
-        const {path,url} = signedParams
+        const { path, url } = signedParams;
         const filePath = path + "/" + name;
         const fileType = type;
-        const signedUrl = url 
+        const signedUrl = url;
 
         try {
           return axios({
-            method: 'POST',
-            url:signedUrl,
+            method: "POST",
+            url: signedUrl,
             headers: {
-              'Content-Type': 'application/json',
+              "Content-Type": "application/json",
             },
             data: { filePath, fileType },
           }).then((res) => {
             const { status: statusHeader, data } = res;
-            if (statusHeader !== 200) reject('Upload failed');
+            if (statusHeader !== 200) reject("Upload failed");
             const { signedRequest, url, status } = data;
-            if (!status) reject('Upload failed');
+            if (!status) reject("Upload failed");
             axios
               .put(signedRequest, file, {
                 headers: {
-                  'Content-Type': fileType,
+                  "Content-Type": fileType,
                 },
               })
               .then((res) => {
-                if (!res.status) reject('Upload failed');
+                if (!res.status) reject("Upload failed");
                 resolve(url);
               })
               .catch(function (error) {
-                console.error('Error:', error);
-                reject('Upload failed');
+                console.error("Error:", error);
+                reject("Upload failed");
               });
           });
         } catch (err) {
-          console.error('Error:', error);
-          reject('Upload failed');
+          console.error("Error:", error);
+          reject("Upload failed");
         }
       });
-    }
+    },
   },
 
   watch: {
@@ -267,7 +267,7 @@ export default {
 
           this.quill.setContents(newValHtml);
         } else if (!newVal) {
-          this.quill.setText('');
+          this.quill.setText("");
         }
       }
     },
@@ -281,7 +281,7 @@ export default {
           this._content = newValHtml;
           this.quill.setContents(newValHtml);
         } else if (!newValHtml) {
-          this.quill.setText('');
+          this.quill.setText("");
         }
       }
     },

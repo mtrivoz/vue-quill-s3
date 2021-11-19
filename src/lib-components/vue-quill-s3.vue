@@ -1,20 +1,20 @@
 <template>
-    <quill-editor
-      ref="myQuillEditor"
-      v-model="content"
-      :style="`height:${height}px;`"
-      :options="settings"
-      :disabled="!editable"
-      :signed-params="signedParams"
-      @blur="onEditorBlur($event)"
-      @focus="onEditorFocus($event)"
-      @change="onEditorChange($event)"
-      @ready="onEditorReady($event)"
-    />
+  <quill-editor
+    ref="myQuillEditor"
+    v-model="content"
+    :style="`height:${height}px;`"
+    :options="settings"
+    :disabled="!editable"
+    :signed-params="signedParams"
+    @blur="onEditorBlur($event)"
+    @focus="onEditorFocus($event)"
+    @change="onEditorChange($event)"
+    @ready="onEditorReady($event)"
+  />
 </template>
 
 <script>
-import { quillEditor } from '../vue-quill';
+import { quillEditor } from "../vue-quill";
 
 export default {
   components: {
@@ -23,7 +23,7 @@ export default {
   props: {
     value: {
       type: String,
-      default: '',
+      default: "",
     },
     settings: {
       type: Object,
@@ -45,7 +45,7 @@ export default {
 
   data() {
     return {
-      content: '',
+      content: "",
       tableModule: null,
     };
   },
@@ -60,20 +60,20 @@ export default {
 
   methods: {
     onEditorBlur(quill) {
-      console.log('editor blur!', quill);
+      console.log("editor blur!", quill);
     },
 
     onEditorFocus(quill) {
-      console.log('editor focus!', quill);
+      console.log("editor focus!", quill);
     },
 
     onEditorReady(quill) {
-      console.log('editor ready!', quill);
+      console.log("editor ready!", quill);
     },
 
     onEditorChange({ quill, html, text }) {
-      console.log('editor change!', quill, html, text);
-      this.$emit('input', { quill, html, text});
+      console.log("editor change!", quill, html, text);
+      this.$emit("input", { quill, html, text });
     },
   },
   computed: {
@@ -92,7 +92,7 @@ export default {
   mounted() {},
 };
 </script>
-
+<style src="./index.css" lang="css" scoped />
 <style scoped>
 ::v-deep .ql-container {
   font-size: inherit;
@@ -100,13 +100,12 @@ export default {
 }
 </style>
 <style>
-
 /* button.ql-showHtml:after {
   content: "[HTML]";
    font-weight: 700;
 } */
 
- .ql-editor {
+.ql-editor {
   font-size: 16px;
 }
 
@@ -151,7 +150,7 @@ export default {
 }
 .quillWrapper .ql-toolbar.ql-snow .ql-formats {
   vertical-align: top;
-} 
+}
 
 /* quill.imageUploader.css */
 .image-uploading {
@@ -187,5 +186,4 @@ export default {
     transform: rotate(360deg);
   }
 }
-
 </style>

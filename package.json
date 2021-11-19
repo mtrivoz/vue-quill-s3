@@ -8,6 +8,9 @@
   "unpkg": "dist/vue-quill-s3.min.js",
   "author": "natpkg",
   "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "repository": {
     "type": "git",
     "url": "git@github.com:natpkg/vue-quill-s3.git"
