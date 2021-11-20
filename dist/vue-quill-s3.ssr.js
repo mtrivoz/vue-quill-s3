@@ -6804,9 +6804,10 @@ var ImageUploader$1 = ImageUploader;var imageResize_min = createCommonjsModule(f
   exports.default = QuillHtmlSourceModule;
 });
 var QuillHtmlSourceButton = viewSource;//
-quill.register('modules/imageUploader', ImageUploader$1);
-quill.register('modules/imageResize', imageResize_min);
-quill.register('modules/htmlSource', QuillHtmlSourceButton);
+var Quill = window.Quill || quill || quill;
+Quill.register('modules/imageUploader', ImageUploader$1);
+Quill.register('modules/imageResize', imageResize_min);
+Quill.register('modules/htmlSource', QuillHtmlSourceButton);
 var script = {
   name: 'VueQuillS3',
   props: {
@@ -6850,7 +6851,7 @@ var script = {
       content: '',
       isFullscreen: this.fullscreen,
       quill: null,
-      Quill: quill,
+      Quill: Quill,
       icons: null
     };
   },
@@ -6894,7 +6895,7 @@ var script = {
     initCustomToolbarIcon: function initCustomToolbarIcon() {
       var _this = this;
 
-      this.icons = quill.import('ui/icons');
+      this.icons = Quill.import('ui/icons');
       forEach_1(ICON_SVGS, function (iconValue, iconName) {
         _this.icons[iconName] = iconValue;
       });
@@ -6903,7 +6904,7 @@ var script = {
       var _this2 = this;
 
       var quillEditor = this.$refs.quillEditor;
-      var quill$1 = new quill(quillEditor, {
+      var quill = new Quill(quillEditor, {
         debug: 'warn',
         modules: {
           table: true,
@@ -6928,7 +6929,7 @@ var script = {
         placeholder: this.placeholder || 'Insert text here ...',
         theme: this.theme
       });
-      this.quill = quill$1;
+      this.quill = quill;
       this.quill.enable(false);
 
       if (this.value || this.content) {
@@ -6952,7 +6953,7 @@ var script = {
         this.quill.enable(true);
       }
 
-      quill$1.on('text-change', function (delta, oldDelta, source) {
+      quill.on('text-change', function (delta, oldDelta, source) {
         var html = _this2.$refs.quillEditor.children[0].innerHTML;
         var quill = _this2.quill;
 
@@ -6967,14 +6968,14 @@ var script = {
           quill: quill
         });
       });
-      quill$1.on('selection-change', function (range) {
+      quill.on('selection-change', function (range) {
         if (!range) {
           _this2.$emit('blur', _this2.quill);
         } else {
           _this2.$emit('focus', _this2.quill);
         }
       });
-      this.$emit('init', quill$1, this);
+      this.$emit('init', quill, this);
     },
     initFullBtn: function initFullBtn() {
       var _this3 = this;
@@ -7195,7 +7196,7 @@ var __vue_inject_styles__ = undefined;
 var __vue_scope_id__ = undefined;
 /* module identifier */
 
-var __vue_module_identifier__ = "data-v-f6171b9c";
+var __vue_module_identifier__ = "data-v-6a46ba08";
 /* functional template */
 
 var __vue_is_functional_template__ = false;

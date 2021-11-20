@@ -23,8 +23,12 @@
   </div>
 </template>
 <script type="text/javascript">
-import Quill from 'quill';
+import _Quill from "../../node_modules/quill/dist/quill";
+import __Quill from 'quill';
 import toolbar from './toolbar';
+import '../../node_modules/quill/dist/quill.core.css';
+import '../../node_modules/quill/dist/quill.bubble.css';
+import '../../node_modules/quill/dist/quill.snow.css';
 import 'quill/dist/quill.core.css';
 import 'quill/dist/quill.bubble.css';
 import 'quill/dist/quill.snow.css';
@@ -32,6 +36,8 @@ import ICON_SVGS from './icons';
 import './quill-editor.css';
 import forEach from 'lodash/forEach';
 import axios from 'axios';
+
+const Quill = window.Quill || _Quill || __Quill
 
 import ImageUploader from './modules/image-uploader/index.js';
 Quill.register('modules/imageUploader', ImageUploader);

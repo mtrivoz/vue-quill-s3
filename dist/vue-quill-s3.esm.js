@@ -6779,9 +6779,10 @@ var viewSource = createCommonjsModule(function (module, exports) {
 var QuillHtmlSourceButton = viewSource;
 
 //
-quill.register('modules/imageUploader', ImageUploader$1);
-quill.register('modules/imageResize', imageResize_min);
-quill.register('modules/htmlSource', QuillHtmlSourceButton);
+const Quill = window.Quill || quill || quill;
+Quill.register('modules/imageUploader', ImageUploader$1);
+Quill.register('modules/imageResize', imageResize_min);
+Quill.register('modules/htmlSource', QuillHtmlSourceButton);
 var script = {
   name: 'VueQuillS3',
   props: {
@@ -6824,7 +6825,7 @@ var script = {
       content: '',
       isFullscreen: this.fullscreen,
       quill: null,
-      Quill: quill,
+      Quill: Quill,
       icons: null
     };
   },
@@ -6871,7 +6872,7 @@ var script = {
   },
   methods: {
     initCustomToolbarIcon() {
-      this.icons = quill.import('ui/icons');
+      this.icons = Quill.import('ui/icons');
       forEach_1(ICON_SVGS, (iconValue, iconName) => {
         this.icons[iconName] = iconValue;
       });
@@ -6879,7 +6880,7 @@ var script = {
 
     initialize() {
       const quillEditor = this.$refs.quillEditor;
-      const quill$1 = new quill(quillEditor, {
+      const quill = new Quill(quillEditor, {
         debug: 'warn',
         modules: {
           table: true,
@@ -6902,7 +6903,7 @@ var script = {
         placeholder: this.placeholder || 'Insert text here ...',
         theme: this.theme
       });
-      this.quill = quill$1;
+      this.quill = quill;
       this.quill.enable(false);
 
       if (this.value || this.content) {
@@ -6926,7 +6927,7 @@ var script = {
         this.quill.enable(true);
       }
 
-      quill$1.on('text-change', (delta, oldDelta, source) => {
+      quill.on('text-change', (delta, oldDelta, source) => {
         let html = this.$refs.quillEditor.children[0].innerHTML;
         const quill = this.quill;
         const text = this.quill.getText();
@@ -6938,14 +6939,14 @@ var script = {
           quill
         });
       });
-      quill$1.on('selection-change', range => {
+      quill.on('selection-change', range => {
         if (!range) {
           this.$emit('blur', this.quill);
         } else {
           this.$emit('focus', this.quill);
         }
       });
-      this.$emit('init', quill$1, this);
+      this.$emit('init', quill, this);
     },
 
     initFullBtn() {
