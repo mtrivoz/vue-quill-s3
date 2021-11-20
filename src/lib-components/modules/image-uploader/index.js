@@ -1,4 +1,5 @@
 import LoadingImage from './blots/image.js';
+import "./index.css";
 class ImageUploader {
   constructor(quill, options) {
     this.quill = quill;

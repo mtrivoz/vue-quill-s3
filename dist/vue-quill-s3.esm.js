@@ -2011,6 +2011,83 @@ eval("/* (ignored) */\n\n//# sourceURL=webpack://Quill/./util.inspect_(ignored)?
 });
 });
 
+var toolbar = [['bold', 'italic', 'underline', 'strike'], ['blockquote', 'code-block'], [{
+  list: 'ordered'
+}, {
+  list: 'bullet'
+}], [{
+  script: 'super'
+}], [{
+  indent: '-1'
+}, {
+  indent: '+1'
+}], [{
+  size: ['small', false, 'large', 'huge']
+}], [{
+  header: [1, 2, 3, 4, 5, 6, false]
+}], [{
+  color: []
+}, {
+  background: []
+}], [{
+  align: []
+}], ['link', 'image'], [{
+  table: 'TD'
+}, {
+  'table-insert-row': 'TIR'
+}, {
+  'table-insert-column': 'TIC'
+}, {
+  'table-delete-row': 'TDR'
+}, {
+  'table-delete-column': 'TDC'
+}], ['showHtml']];
+
+var ICON_SVGS = {
+  maxsize: `<svg viewBox="0 0 18 18">
+      <path d="M2 6 L 2 2 6 2M12 2 L 16 2 16 6" class="ql-stroke"></path>
+      <path d="M2 12 L 2 16 6 16M12 16 L 16 16 16 12" class="ql-stroke"></path>
+    </svg>`,
+  minsize: `<svg viewBox="0 0 18 18">
+      <path d="M2 6 L 6 6 6 2M12 2 L 12 6 16 6" class="ql-stroke"></path>
+      <path d="M2 12 L 6 12 6 16M12 16 L 12 12 16 12" class="ql-stroke"></path>
+    </svg>`,
+  'table-insert-row': `<svg viewbox="0 0 18 18">
+    <g class="ql-fill ql-stroke ql-thin ql-transparent">
+      <rect height="3" rx="0.5" ry="0.5" width="7" x="4.5" y="2.5"></rect>
+      <rect height="3" rx="0.5" ry="0.5" width="7" x="4.5" y="12.5"></rect>
+    </g>
+    <rect class="ql-fill ql-stroke ql-thin" height="3" rx="0.5" ry="0.5" width="7" x="8.5" y="7.5"></rect>
+    <polygon class="ql-fill ql-stroke ql-thin" points="4.5 11 2.5 9 4.5 7 4.5 11"></polygon>
+    <line class="ql-stroke" x1="6" x2="4" y1="9" y2="9"></line>
+  </svg>`,
+  'table-insert-column': `<svg viewbox="0 0 18 18">
+    <g class="ql-fill ql-transparent">
+      <rect height="10" rx="1" ry="1" width="4" x="12" y="2"></rect>
+      <rect height="10" rx="1" ry="1" width="4" x="2" y="2"></rect>
+    </g>
+    <path class="ql-fill" d="M11.354,4.146l-2-2a0.5,0.5,0,0,0-.707,0l-2,2A0.5,0.5,0,0,0,7,5H8V6a1,1,0,0,0,2,0V5h1A0.5,0.5,0,0,0,11.354,4.146Z"></path>
+    <rect class="ql-fill" height="8" rx="1" ry="1" width="4" x="7" y="8"></rect>
+  </svg>`,
+  'table-delete-row': `<svg viewbox="0 0 18 18">
+    <g class="ql-fill ql-stroke ql-thin ql-transparent">
+      <rect height="3" rx="0.5" ry="0.5" width="7" x="4.5" y="2.5"></rect>
+      <rect height="3" rx="0.5" ry="0.5" width="7" x="4.5" y="12.5"></rect>
+    </g>
+    <rect class="ql-fill ql-stroke ql-thin" height="3" rx="0.5" ry="0.5" width="7" x="8.5" y="7.5"></rect>
+    <line class="ql-stroke ql-thin" x1="6.5" x2="3.5" y1="7.5" y2="10.5"></line>
+    <line class="ql-stroke ql-thin" x1="3.5" x2="6.5" y1="7.5" y2="10.5"></line>
+  </svg>`,
+  'table-delete-column': `<svg viewbox="0 0 18 18">
+    <g class="ql-fill ql-transparent">
+      <rect height="10" rx="1" ry="1" width="4" x="2" y="6"></rect>
+      <rect height="10" rx="1" ry="1" width="4" x="12" y="6"></rect>
+    </g>
+    <rect class="ql-fill" height="8" rx="1" ry="1" width="4" x="7" y="2"></rect>
+    <path class="ql-fill" d="M9.707,13l1.146-1.146a0.5,0.5,0,0,0-.707-0.707L9,12.293,7.854,11.146a0.5,0.5,0,0,0-.707.707L8.293,13,7.146,14.146a0.5,0.5,0,1,0,.707.707L9,13.707l1.146,1.146a0.5,0.5,0,0,0,.707-0.707Z"></path>
+  </svg>`
+};
+
 /**
  * A specialized version of `_.forEach` for arrays without support for
  * iteratee shorthands.
@@ -2931,43 +3008,6 @@ function forEach$1(collection, iteratee) {
 }
 
 var forEach_1 = forEach$1;
-
-const ICON_SVGS = {
-  'table-insert-row': `<svg viewbox="0 0 18 18">
-      <g class="ql-fill ql-stroke ql-thin ql-transparent">
-        <rect height="3" rx="0.5" ry="0.5" width="7" x="4.5" y="2.5"></rect>
-        <rect height="3" rx="0.5" ry="0.5" width="7" x="4.5" y="12.5"></rect>
-      </g>
-      <rect class="ql-fill ql-stroke ql-thin" height="3" rx="0.5" ry="0.5" width="7" x="8.5" y="7.5"></rect>
-      <polygon class="ql-fill ql-stroke ql-thin" points="4.5 11 2.5 9 4.5 7 4.5 11"></polygon>
-      <line class="ql-stroke" x1="6" x2="4" y1="9" y2="9"></line>
-    </svg>`,
-  'table-insert-column': `<svg viewbox="0 0 18 18">
-      <g class="ql-fill ql-transparent">
-        <rect height="10" rx="1" ry="1" width="4" x="12" y="2"></rect>
-        <rect height="10" rx="1" ry="1" width="4" x="2" y="2"></rect>
-      </g>
-      <path class="ql-fill" d="M11.354,4.146l-2-2a0.5,0.5,0,0,0-.707,0l-2,2A0.5,0.5,0,0,0,7,5H8V6a1,1,0,0,0,2,0V5h1A0.5,0.5,0,0,0,11.354,4.146Z"></path>
-      <rect class="ql-fill" height="8" rx="1" ry="1" width="4" x="7" y="8"></rect>
-    </svg>`,
-  'table-delete-row': `<svg viewbox="0 0 18 18">
-      <g class="ql-fill ql-stroke ql-thin ql-transparent">
-        <rect height="3" rx="0.5" ry="0.5" width="7" x="4.5" y="2.5"></rect>
-        <rect height="3" rx="0.5" ry="0.5" width="7" x="4.5" y="12.5"></rect>
-      </g>
-      <rect class="ql-fill ql-stroke ql-thin" height="3" rx="0.5" ry="0.5" width="7" x="8.5" y="7.5"></rect>
-      <line class="ql-stroke ql-thin" x1="6.5" x2="3.5" y1="7.5" y2="10.5"></line>
-      <line class="ql-stroke ql-thin" x1="3.5" x2="6.5" y1="7.5" y2="10.5"></line>
-    </svg>`,
-  'table-delete-column': `<svg viewbox="0 0 18 18">
-      <g class="ql-fill ql-transparent">
-        <rect height="10" rx="1" ry="1" width="4" x="2" y="6"></rect>
-        <rect height="10" rx="1" ry="1" width="4" x="12" y="6"></rect>
-      </g>
-      <rect class="ql-fill" height="8" rx="1" ry="1" width="4" x="7" y="2"></rect>
-      <path class="ql-fill" d="M9.707,13l1.146-1.146a0.5,0.5,0,0,0-.707-0.707L9,12.293,7.854,11.146a0.5,0.5,0,0,0-.707.707L8.293,13,7.146,14.146a0.5,0.5,0,1,0,.707.707L9,13.707l1.146,1.146a0.5,0.5,0,0,0,.707-0.707Z"></path>
-    </svg>`
-};
 
 var bind = function bind(fn, thisArg) {
   return function wrap() {
@@ -6646,7 +6686,7 @@ var imageResize_min = createCommonjsModule(function (module, exports) {
 
 var viewSource = createCommonjsModule(function (module, exports) {
 
-  Object.defineProperty(exports, "__esModule", {
+  Object.defineProperty(exports, '__esModule', {
     value: true
   });
 
@@ -6676,15 +6716,16 @@ var viewSource = createCommonjsModule(function (module, exports) {
       var toolbarEl = this.toolbar.container;
       var buttonContainer = document.createElement('span');
       buttonContainer.setAttribute('class', 'ql-formats');
+      buttonContainer.style = 'float: right;margin-right: 0;';
       var button = document.createElement('button');
-      button.innerHTML = '<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="code" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M278.9 511.5l-61-17.7c-6.4-1.8-10-8.5-8.2-14.9L346.2 8.7c1.8-6.4 8.5-10 14.9-8.2l61 17.7c6.4 1.8 10 8.5 8.2 14.9L293.8 503.3c-1.9 6.4-8.5 10.1-14.9 8.2zm-114-112.2l43.5-46.4c4.6-4.9 4.3-12.7-.8-17.2L117 256l90.6-79.7c5.1-4.5 5.5-12.3.8-17.2l-43.5-46.4c-4.5-4.8-12.1-5.1-17-.5L3.8 247.2c-5.1 4.7-5.1 12.8 0 17.5l144.1 135.1c4.9 4.6 12.5 4.4 17-.5zm327.2.6l144.1-135.1c5.1-4.7 5.1-12.8 0-17.5L492.1 112.1c-4.8-4.5-12.4-4.3-17 .5L431.6 159c-4.6 4.9-4.3 12.7.8 17.2L523 256l-90.6 79.7c-5.1 4.5-5.5 12.3-.8 17.2l43.5 46.4c4.5 4.9 12.1 5.1 17 .6z"></path></svg>';
+      button.innerHTML = '<svg version="1.1" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><g><path d="m12.309 3.4883v2.207l3.3047 3.3047-3.3047 3.3086v2.2031l5.5117-5.5117z"/><path d="m5.6953 5.6953v-2.207l-5.5156 5.5117 5.5156 5.5117v-2.2031l-3.3086-3.3086z"/><path d="m10.102 6.7969-4.4062 4.4062h2.2031l4.4102-4.4062z"/></g></svg>';
       button.type = 'button';
       button.classList.add(this.classToolbarButton); // event binding
 
       button.onclick = function (e) {
         e.preventDefault();
 
-        var htmlEditor = _this.container.querySelector("." + _this.classEditor);
+        var htmlEditor = _this.container.querySelector('.' + _this.classEditor);
 
         var htmlTextArea = htmlEditor.querySelector('textarea');
         htmlEditor.style.display = _this.showingHtml ? 'none' : '';
@@ -6714,7 +6755,7 @@ var viewSource = createCommonjsModule(function (module, exports) {
 
 
     QuillHtmlSourceModule.prototype.initHtmlTextArea = function () {
-      var htmlTextAreaEditor = this.container.querySelector("." + this.classEditor);
+      var htmlTextAreaEditor = this.container.querySelector('.' + this.classEditor);
 
       if (htmlTextAreaEditor == null) {
         // Textarea
@@ -6724,7 +6765,7 @@ var viewSource = createCommonjsModule(function (module, exports) {
 
         var htmlEditor = document.createElement('div');
         htmlEditor.classList.add(this.classEditor);
-        htmlEditor.style.cssText = 'position: absolute; height: 100%; width: 100%; display: none';
+        htmlEditor.style.cssText = 'position: absolute; height: 100%; width: 100%; display: none;';
         htmlEditor.appendChild(txtArea);
         this.container.appendChild(htmlEditor);
       }
@@ -6738,276 +6779,61 @@ var viewSource = createCommonjsModule(function (module, exports) {
 var QuillHtmlSourceButton = viewSource;
 
 //
-
-quill.register("modules/imageUploader", ImageUploader$1); // import ImageResize from '../image-size/ImageResize';
-
-quill.register("modules/imageResize", imageResize_min);
-
-quill.register("modules/htmlSource", QuillHtmlSourceButton);
-
-const Quill = window.Quill || quill; // pollfill
-
-if (typeof Object.assign != "function") {
-  Object.defineProperty(Object, "assign", {
-    value(target) {
-      if (target == null) {
-        throw new TypeError("Cannot convert undefined or null to object");
-      }
-
-      const to = Object(target);
-
-      for (let index = 1; index < arguments.length; index++) {
-        const nextSource = arguments[index];
-
-        if (nextSource != null) {
-          for (const nextKey in nextSource) {
-            if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
-              to[nextKey] = nextSource[nextKey];
-            }
-          }
-        }
-      }
-
-      return to;
-    },
-
-    writable: true,
-    configurable: true
-  });
-}
-
-var script$1 = {
-  name: "quill-editor",
-
-  data() {
-    return {
-      _options: {},
-      _content: "",
-      defaultOptions: {
-        theme: "snow",
-        modules: {
-          table: true,
-          imageResize: {},
-          imageUploader: {
-            upload: file => this.actImageUploadHandler(file)
-          },
-          htmlSource: {},
-          toolbar: {
-            container: [["bold", "italic", "underline", "strike"], ["blockquote", "code-block"], [{
-              list: "ordered"
-            }, {
-              list: "bullet"
-            }], [{
-              script: "super"
-            }], [{
-              indent: "-1"
-            }, {
-              indent: "+1"
-            }], [{
-              size: ["small", false, "large", "huge"]
-            }], [{
-              header: [1, 2, 3, 4, 5, 6, false]
-            }], [{
-              color: []
-            }, {
-              background: []
-            }], [{
-              align: []
-            }], ["link", "image"], [{
-              table: "TD"
-            }, {
-              "table-insert-row": "TIR"
-            }, {
-              "table-insert-column": "TIC"
-            }, {
-              "table-delete-row": "TDR"
-            }, {
-              "table-delete-column": "TDC"
-            }], ["showHtml"]],
-            handlers: {
-              table: this.actTableHandler,
-              "table-insert-row": this.actTableInsertRowHandler,
-              "table-insert-column": this.actTableInsertColumnHandler,
-              "table-delete-row": this.actTableDeleteRowHandler,
-              "table-delete-column": this.actTableDeleteColumnHandler
-            }
-          }
-        },
-        placeholder: this.placeholder || "Insert text here ...",
-        readOnly: false
-      },
-      quill: quill
-    };
-  },
-
+quill.register('modules/imageUploader', ImageUploader$1);
+quill.register('modules/imageResize', imageResize_min);
+quill.register('modules/htmlSource', QuillHtmlSourceButton);
+var script = {
+  name: 'VueQuillS3',
   props: {
-    content: String,
     value: String,
-    disabled: {
+    width: Number,
+    height: Number,
+    placeholder: String,
+    toolbar: [Object, Array],
+    zIndex: [String, Number],
+    fullscreen: {
       type: Boolean,
       default: false
     },
-    options: {
-      type: Object,
-      required: false,
-      default: () => ({})
-    },
-    globalOptions: {
-      type: Object,
-      required: false,
-      default: () => ({})
-    },
     signedParams: {
       type: Object,
-      required: false,
-      default: () => ({})
+      default: () => ({
+        path: 'news/tepm',
+        url: 'https://api.boholight.co/upload/publish'
+      })
+    },
+    syncOutput: {
+      type: Boolean,
+      default: true
+    },
+    theme: {
+      type: String,
+      default: 'snow'
+    },
+    hasBorder: Boolean,
+    disabled: Boolean,
+    imgAccept: String,
+    showFullButton: {
+      type: Boolean,
+      default: true
     }
   },
 
-  mounted() {
-    this.initCustomToolbarIcon();
-    this.initialize();
+  data() {
+    return {
+      content: '',
+      isFullscreen: this.fullscreen,
+      quill: null,
+      Quill: quill,
+      icons: null
+    };
   },
 
-  beforeDestroy() {
-    this.quill = null;
-    delete this.quill;
-  },
-
-  methods: {
-    initCustomToolbarIcon() {
-      let icons = Quill.import("ui/icons");
-      forEach_1(ICON_SVGS, (iconValue, iconName) => {
-        icons[iconName] = iconValue;
-      });
-    },
-
-    initialize() {
-      if (this.$el) {
-        this._options = Object.assign({}, this.defaultOptions, this.globalOptions, this.options); // Instance
-
-        this.quill = new Quill(this.$refs.editor, this._options);
-        this.quill.enable(false);
-
-        if (this.value || this.content) {
-          const delta = this.value || this.content;
-
-          if (Array.isArray(delta)) {
-            this.quill.setContents(delta, "silent");
-          } else {
-            const htmlData = this.quill.clipboard.convert({
-              html: delta
-            });
-            this.quill.setContents(htmlData, "silent");
-          }
-        }
-
-        if (!this.disabled) {
-          this.quill.enable(true);
-        }
-
-        this.quill.on("selection-change", range => {
-          if (!range) {
-            this.$emit("blur", this.quill);
-          } else {
-            this.$emit("focus", this.quill);
-          }
-        });
-        this.quill.on("text-change", (delta, oldDelta, source) => {
-          let html = this.$refs.editor.children[0].innerHTML;
-          const quill = this.quill;
-          const text = this.quill.getText();
-          if (html === "<p><br></p>") html = "";
-          this._content = html; // this.$emit('input', this._content);
-
-          this.$emit("change", {
-            html,
-            text,
-            quill
-          });
-        });
-        this.$emit("ready", this.quill);
-      }
-    },
-
-    actTableHandler() {
-      this.quill.getModule("table").insertTable(2, 3);
-    },
-
-    actTableInsertRowHandler() {
-      this.quill.getModule("table").insertRowBelow();
-    },
-
-    actTableInsertColumnHandler() {
-      this.quill.getModule("table").insertColumnRight();
-    },
-
-    actTableDeleteRowHandler() {
-      this.quill.getModule("table").deleteRow();
-    },
-
-    actTableDeleteColumnHandler() {
-      this.quill.getModule("table").deleteColumn();
-    },
-
-    actImageUploadHandler(file) {
-      return new Promise((resolve, reject) => {
-        const {
-          type,
-          name
-        } = file;
-        const {
-          path,
-          url
-        } = signedParams;
-        const filePath = path + "/" + name;
-        const fileType = type;
-        const signedUrl = url;
-
-        try {
-          return axios({
-            method: "POST",
-            url: signedUrl,
-            headers: {
-              "Content-Type": "application/json"
-            },
-            data: {
-              filePath,
-              fileType
-            }
-          }).then(res => {
-            const {
-              status: statusHeader,
-              data
-            } = res;
-            if (statusHeader !== 200) reject("Upload failed");
-            const {
-              signedRequest,
-              url,
-              status
-            } = data;
-            if (!status) reject("Upload failed");
-            axios.put(signedRequest, file, {
-              headers: {
-                "Content-Type": fileType
-              }
-            }).then(res => {
-              if (!res.status) reject("Upload failed");
-              resolve(url);
-            }).catch(function (error) {
-              console.error("Error:", error);
-              reject("Upload failed");
-            });
-          });
-        } catch (err) {
-          console.error("Error:", error);
-          reject("Upload failed");
-        }
-      });
-    }
-
-  },
   watch: {
+    fullscreen(val) {
+      this.isFullscreen = val;
+    },
+
     content(newVal) {
       if (this.quill) {
         let newValHtml = this.quill.clipboard.convert({
@@ -7018,7 +6844,7 @@ var script$1 = {
           this._content = newValHtml;
           this.quill.setContents(newValHtml);
         } else if (!newVal) {
-          this.quill.setText("");
+          this.quill.setText('');
         }
       }
     },
@@ -7033,18 +6859,219 @@ var script$1 = {
           this._content = newValHtml;
           this.quill.setContents(newValHtml);
         } else if (!newValHtml) {
-          this.quill.setText("");
+          this.quill.setText('');
         }
       }
     },
 
-    disabled(newVal) {
-      if (this.quill) {
-        this.quill.enable(!newVal);
-      }
+    disabled(newVal, oldVal) {
+      this.setDisabled(newVal);
     }
 
+  },
+  methods: {
+    initCustomToolbarIcon() {
+      this.icons = quill.import('ui/icons');
+      forEach_1(ICON_SVGS, (iconValue, iconName) => {
+        this.icons[iconName] = iconValue;
+      });
+    },
+
+    initialize() {
+      const quillEditor = this.$refs.quillEditor;
+      const quill$1 = new quill(quillEditor, {
+        debug: 'warn',
+        modules: {
+          table: true,
+          imageResize: {},
+          imageUploader: {
+            upload: file => this.actImageUploadHandler(file)
+          },
+          htmlSource: {},
+          toolbar: {
+            container: this.toolbar || toolbar,
+            handlers: {
+              table: this.actTableHandler,
+              'table-insert-row': this.actTableInsertRowHandler,
+              'table-insert-column': this.actTableInsertColumnHandler,
+              'table-delete-row': this.actTableDeleteRowHandler,
+              'table-delete-column': this.actTableDeleteColumnHandler
+            }
+          }
+        },
+        placeholder: this.placeholder || 'Insert text here ...',
+        theme: this.theme
+      });
+      this.quill = quill$1;
+      this.quill.enable(false);
+
+      if (this.value || this.content) {
+        const delta = this.value || this.content;
+
+        if (Array.isArray(delta)) {
+          this.quill.setContents(delta, 'silent');
+        } else {
+          const htmlData = this.quill.clipboard.convert({
+            html: delta
+          });
+          this.quill.setContents(htmlData, 'silent');
+        }
+      }
+
+      if (this.theme === 'snow' && this.showFullButton) {
+        this.initFullBtn();
+      }
+
+      if (!this.disabled) {
+        this.quill.enable(true);
+      }
+
+      quill$1.on('text-change', (delta, oldDelta, source) => {
+        let html = this.$refs.quillEditor.children[0].innerHTML;
+        const quill = this.quill;
+        const text = this.quill.getText();
+        if (html === '<p><br></p>') html = '';
+        this._content = html;
+        this.$emit('change', {
+          html,
+          text,
+          quill
+        });
+      });
+      quill$1.on('selection-change', range => {
+        if (!range) {
+          this.$emit('blur', this.quill);
+        } else {
+          this.$emit('focus', this.quill);
+        }
+      });
+      this.$emit('init', quill$1, this);
+    },
+
+    initFullBtn() {
+      const childs = this.$refs.quillEditorBox.children;
+      const fullBtn = document.createElement('SPAN');
+      fullBtn.className = 'ql-formats ql-resize';
+      fullBtn.style = 'float: right;margin-right: 0;';
+      const that = this;
+
+      function setSizeBtn() {
+        let icon = '';
+
+        if (that.isFullscreen) {
+          icon = that.icons.minsize;
+        } else {
+          icon = that.icons.maxsize;
+        }
+
+        fullBtn.innerHTML = '<button type="button" class="ql-fullscreen">' + icon + '</button>';
+      }
+
+      setSizeBtn();
+      fullBtn.addEventListener('click', () => {
+        this.isFullscreen = !this.isFullscreen;
+        setSizeBtn();
+      }, false);
+
+      for (let i in childs) {
+        if (childs[i].className.indexOf('ql-toolbar') > -1) {
+          childs[i].append(fullBtn);
+          break;
+        }
+      }
+    },
+
+    setDisabled(val) {
+      this.quill.enable(!val);
+    },
+
+    getContent(val) {
+      return this.quill.container.firstChild.innerHTML;
+    },
+
+    actTableHandler() {
+      this.quill.getModule('table').insertTable(2, 3);
+    },
+
+    actTableInsertRowHandler() {
+      this.quill.getModule('table').insertRowBelow();
+    },
+
+    actTableInsertColumnHandler() {
+      this.quill.getModule('table').insertColumnRight();
+    },
+
+    actTableDeleteRowHandler() {
+      this.quill.getModule('table').deleteRow();
+    },
+
+    actTableDeleteColumnHandler() {
+      this.quill.getModule('table').deleteColumn();
+    },
+
+    actImageUploadHandler(file) {
+      return new Promise((resolve, reject) => {
+        const {
+          type,
+          name
+        } = file;
+        const {
+          path,
+          url
+        } = this.signedParams;
+        const filePath = path + '/' + name;
+        const fileType = type;
+        const signedUrl = url;
+
+        try {
+          return axios({
+            method: 'POST',
+            url: signedUrl,
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            data: {
+              filePath,
+              fileType
+            }
+          }).then(res => {
+            const {
+              status: statusHeader,
+              data
+            } = res;
+            if (statusHeader !== 200) reject('Upload failed');
+            const {
+              signedRequest,
+              url,
+              status
+            } = data;
+            if (!status) reject('Upload failed');
+            axios.put(signedRequest, file, {
+              headers: {
+                'Content-Type': fileType
+              }
+            }).then(res => {
+              if (!res.status) reject('Upload failed');
+              resolve(url);
+            }).catch(function (error) {
+              console.error('Error:', error);
+              reject('Upload failed');
+            });
+          });
+        } catch (err) {
+          console.error('Error:', error);
+          reject('Upload failed');
+        }
+      });
+    }
+
+  },
+
+  mounted() {
+    this.initCustomToolbarIcon();
+    this.initialize();
   }
+
 };
 
 function normalizeComponent(template, style, script, scopeId, isFunctionalTemplate, moduleIdentifier /* server only */, shadowMode, createInjector, createInjectorSSR, createInjectorShadow) {
@@ -7123,194 +7150,6 @@ function normalizeComponent(template, style, script, scopeId, isFunctionalTempla
 }
 
 /* script */
-const __vue_script__$1 = script$1;
-/* template */
-
-var __vue_render__$1 = function () {
-  var _vm = this;
-
-  var _h = _vm.$createElement;
-
-  var _c = _vm._self._c || _h;
-
-  return _c('div', {
-    staticClass: "quill-editor"
-  }, [_vm._t("toolbar"), _vm._v(" "), _c('div', {
-    ref: "editor"
-  })], 2);
-};
-
-var __vue_staticRenderFns__$1 = [];
-/* style */
-
-const __vue_inject_styles__$1 = undefined;
-/* scoped */
-
-const __vue_scope_id__$1 = undefined;
-/* module identifier */
-
-const __vue_module_identifier__$1 = undefined;
-/* functional template */
-
-const __vue_is_functional_template__$1 = false;
-/* style inject */
-
-/* style inject SSR */
-
-/* style inject shadow dom */
-
-const __vue_component__$2 = /*#__PURE__*/normalizeComponent({
-  render: __vue_render__$1,
-  staticRenderFns: __vue_staticRenderFns__$1
-}, __vue_inject_styles__$1, __vue_script__$1, __vue_scope_id__$1, __vue_is_functional_template__$1, __vue_module_identifier__$1, false, undefined, undefined, undefined);
-
-var quillEditor = __vue_component__$2;
-
-//
-var script = {
-  components: {
-    quillEditor
-  },
-  props: {
-    value: {
-      type: String,
-      default: ""
-    },
-    settings: {
-      type: Object,
-      default: () => {}
-    },
-    signedParams: {
-      type: Object,
-      default: () => {}
-    },
-    height: {
-      type: Number,
-      default: 500
-    },
-    editable: {
-      type: Boolean,
-      default: true
-    }
-  },
-
-  data() {
-    return {
-      content: "",
-      tableModule: null
-    };
-  },
-
-  watch: {
-    content(val) {
-      console.log(val);
-    }
-
-  },
-
-  created() {},
-
-  methods: {
-    onEditorBlur(quill) {
-      console.log("editor blur!", quill);
-    },
-
-    onEditorFocus(quill) {
-      console.log("editor focus!", quill);
-    },
-
-    onEditorReady(quill) {
-      console.log("editor ready!", quill);
-    },
-
-    onEditorChange(_ref) {
-      let {
-        quill,
-        html,
-        text
-      } = _ref;
-      console.log("editor change!", quill, html, text);
-      this.$emit("input", {
-        quill,
-        html,
-        text
-      });
-    }
-
-  },
-  computed: {
-    useSettings: function () {
-      const _this = this;
-
-      return { ...defSettings,
-        ..._this.settings
-      };
-    },
-
-    editor() {
-      return this.$refs.myQuillEditor.quill;
-    }
-
-  },
-
-  mounted() {}
-
-};
-
-const isOldIE = typeof navigator !== 'undefined' &&
-    /msie [6-9]\\b/.test(navigator.userAgent.toLowerCase());
-function createInjector(context) {
-    return (id, style) => addStyle(id, style);
-}
-let HEAD;
-const styles = {};
-function addStyle(id, css) {
-    const group = isOldIE ? css.media || 'default' : id;
-    const style = styles[group] || (styles[group] = { ids: new Set(), styles: [] });
-    if (!style.ids.has(id)) {
-        style.ids.add(id);
-        let code = css.source;
-        if (css.map) {
-            // https://developer.chrome.com/devtools/docs/javascript-debugging
-            // this makes source maps inside style tags work properly in Chrome
-            code += '\n/*# sourceURL=' + css.map.sources[0] + ' */';
-            // http://stackoverflow.com/a/26603875
-            code +=
-                '\n/*# sourceMappingURL=data:application/json;base64,' +
-                    btoa(unescape(encodeURIComponent(JSON.stringify(css.map)))) +
-                    ' */';
-        }
-        if (!style.element) {
-            style.element = document.createElement('style');
-            style.element.type = 'text/css';
-            if (css.media)
-                style.element.setAttribute('media', css.media);
-            if (HEAD === undefined) {
-                HEAD = document.head || document.getElementsByTagName('head')[0];
-            }
-            HEAD.appendChild(style.element);
-        }
-        if ('styleSheet' in style.element) {
-            style.styles.push(code);
-            style.element.styleSheet.cssText = style.styles
-                .filter(Boolean)
-                .join('\n');
-        }
-        else {
-            const index = style.ids.size - 1;
-            const textNode = document.createTextNode(code);
-            const nodes = style.element.childNodes;
-            if (nodes[index])
-                style.element.removeChild(nodes[index]);
-            if (nodes.length)
-                style.element.insertBefore(textNode, nodes[index]);
-            else
-                style.element.appendChild(textNode);
-        }
-    }
-}
-
-/* script */
 const __vue_script__ = script;
 /* template */
 
@@ -7321,63 +7160,48 @@ var __vue_render__ = function () {
 
   var _c = _vm._self._c || _h;
 
-  return _c('quill-editor', {
-    ref: "myQuillEditor",
-    style: "height:" + _vm.height + "px;",
-    attrs: {
-      "options": _vm.settings,
-      "disabled": !_vm.editable,
-      "signed-params": _vm.signedParams
+  return _c('div', {
+    ref: "quillEditorBox",
+    staticClass: "quill-editor",
+    class: {
+      'quill-fullscreen': _vm.isFullscreen,
+      'quill-no-border': !_vm.hasBorder,
+      disabled: _vm.disabled
     },
-    on: {
-      "blur": function ($event) {
-        return _vm.onEditorBlur($event);
-      },
-      "focus": function ($event) {
-        return _vm.onEditorFocus($event);
-      },
-      "change": function ($event) {
-        return _vm.onEditorChange($event);
-      },
-      "ready": function ($event) {
-        return _vm.onEditorReady($event);
-      }
-    },
-    model: {
-      value: _vm.content,
-      callback: function ($$v) {
-        _vm.content = $$v;
-      },
-      expression: "content"
+    style: {
+      width: _vm.isFullscreen ? '' : _vm.width + 'px',
+      height: _vm.isFullscreen ? '' : _vm.height + 'px',
+      zIndex: _vm.zIndex
     }
-  });
+  }, [_c('div', {
+    ref: "quillEditor"
+  }), _vm._v(" "), _c('input', {
+    ref: "img-input",
+    staticStyle: {
+      "display": "none"
+    },
+    attrs: {
+      "type": "file",
+      "accept": _vm.imgAccept
+    }
+  })]);
 };
 
 var __vue_staticRenderFns__ = [];
 /* style */
 
-const __vue_inject_styles__ = function (inject) {
-  if (!inject) return;
-  inject("data-v-65507dfe_0", {
-    source: "[data-v-65507dfe] .ql-container{font-size:inherit;font-family:inherit}",
-    map: undefined,
-    media: undefined
-  }), inject("data-v-65507dfe_1", {
-    source: ".ql-editor{font-size:16px}.ql-snow .ql-stroke.ql-thin,.ql-snow .ql-thin{stroke-width:1px!important}.quillWrapper .ql-snow.ql-toolbar{padding-top:8px;padding-bottom:4px}.quillWrapper .ql-snow.ql-toolbar button{margin:1px}.quillWrapper .ql-snow.ql-toolbar .ql-formats{margin-bottom:10px}.ql-snow .ql-toolbar button svg,.quillWrapper .ql-snow.ql-toolbar button svg{width:22px;height:22px}.quillWrapper .ql-editor ul[data-checked=false]>li::before,.quillWrapper .ql-editor ul[data-checked=true]>li::before{font-size:1.35em;vertical-align:baseline;bottom:-.065em;font-weight:900;color:#222}.quillWrapper .ql-snow .ql-stroke{stroke:rgba(63,63,63,.95);stroke-linecap:square;stroke-linejoin:initial;stroke-width:1.7px}.quillWrapper .ql-picker-label{font-size:15px}.quillWrapper .ql-snow .ql-active .ql-stroke{stroke-width:2.25px}.quillWrapper .ql-toolbar.ql-snow .ql-formats{vertical-align:top}.image-uploading{position:relative;display:inline-block}.image-uploading img{max-width:98%!important;filter:blur(5px);opacity:.3}.image-uploading::before{content:\"\";box-sizing:border-box;position:absolute;top:50%;left:50%;width:30px;height:30px;margin-top:-15px;margin-left:-15px;border-radius:50%;border:3px solid #ccc;border-top-color:#1e986c;z-index:1;animation:spinner .6s linear infinite}@keyframes spinner{to{transform:rotate(360deg)}}",
-    map: undefined,
-    media: undefined
-  });
-};
+const __vue_inject_styles__ = undefined;
 /* scoped */
 
-
-const __vue_scope_id__ = "data-v-65507dfe";
+const __vue_scope_id__ = undefined;
 /* module identifier */
 
 const __vue_module_identifier__ = undefined;
 /* functional template */
 
 const __vue_is_functional_template__ = false;
+/* style inject */
+
 /* style inject SSR */
 
 /* style inject shadow dom */
@@ -7385,15 +7209,18 @@ const __vue_is_functional_template__ = false;
 const __vue_component__ = /*#__PURE__*/normalizeComponent({
   render: __vue_render__,
   staticRenderFns: __vue_staticRenderFns__
-}, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, false, createInjector, undefined, undefined);
+}, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, false, undefined, undefined, undefined);
 
-var __vue_component__$1 = __vue_component__;
+var VueQuillS3 = __vue_component__;
 
-/* eslint-disable import/prefer-default-export */
+VueQuillS3.install = function (Vue) {
+  Vue.component(VueQuillS3.name, VueQuillS3);
+};
 
 var components = /*#__PURE__*/Object.freeze({
 	__proto__: null,
-	VueQuillS3: __vue_component__$1
+	'default': VueQuillS3,
+	VueQuillS3: VueQuillS3
 });
 
 // Import vue components
@@ -7405,4 +7232,4 @@ const install = function installVueQuillS3(Vue) {
   });
 }; // Create module definition for Vue.use()
 
-export { __vue_component__$1 as VueQuillS3, install as default };
+export { VueQuillS3, install as default };

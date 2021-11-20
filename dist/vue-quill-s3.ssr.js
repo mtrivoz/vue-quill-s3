@@ -1,42 +1,4 @@
-'use strict';var http=require('http'),https=require('https'),url=require('url'),stream=require('stream'),assert=require('assert'),tty=require('tty'),util=require('util'),fs=require('fs'),net=require('net'),zlib=require('zlib');function _interopDefaultLegacy(e){return e&&typeof e==='object'&&'default'in e?e:{'default':e}}var http__default=/*#__PURE__*/_interopDefaultLegacy(http);var https__default=/*#__PURE__*/_interopDefaultLegacy(https);var url__default=/*#__PURE__*/_interopDefaultLegacy(url);var stream__default=/*#__PURE__*/_interopDefaultLegacy(stream);var assert__default=/*#__PURE__*/_interopDefaultLegacy(assert);var tty__default=/*#__PURE__*/_interopDefaultLegacy(tty);var util__default=/*#__PURE__*/_interopDefaultLegacy(util);var fs__default=/*#__PURE__*/_interopDefaultLegacy(fs);var net__default=/*#__PURE__*/_interopDefaultLegacy(net);var zlib__default=/*#__PURE__*/_interopDefaultLegacy(zlib);function ownKeys(object, enumerableOnly) {
-  var keys = Object.keys(object);
-
-  if (Object.getOwnPropertySymbols) {
-    var symbols = Object.getOwnPropertySymbols(object);
-
-    if (enumerableOnly) {
-      symbols = symbols.filter(function (sym) {
-        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-      });
-    }
-
-    keys.push.apply(keys, symbols);
-  }
-
-  return keys;
-}
-
-function _objectSpread2(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i] != null ? arguments[i] : {};
-
-    if (i % 2) {
-      ownKeys(Object(source), true).forEach(function (key) {
-        _defineProperty(target, key, source[key]);
-      });
-    } else if (Object.getOwnPropertyDescriptors) {
-      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-    } else {
-      ownKeys(Object(source)).forEach(function (key) {
-        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-      });
-    }
-  }
-
-  return target;
-}
-
-function _classCallCheck(instance, Constructor) {
+'use strict';var http=require('http'),https=require('https'),url=require('url'),stream=require('stream'),assert=require('assert'),tty=require('tty'),util=require('util'),fs=require('fs'),net=require('net'),zlib=require('zlib');function _interopDefaultLegacy(e){return e&&typeof e==='object'&&'default'in e?e:{'default':e}}var http__default=/*#__PURE__*/_interopDefaultLegacy(http);var https__default=/*#__PURE__*/_interopDefaultLegacy(https);var url__default=/*#__PURE__*/_interopDefaultLegacy(url);var stream__default=/*#__PURE__*/_interopDefaultLegacy(stream);var assert__default=/*#__PURE__*/_interopDefaultLegacy(assert);var tty__default=/*#__PURE__*/_interopDefaultLegacy(tty);var util__default=/*#__PURE__*/_interopDefaultLegacy(util);var fs__default=/*#__PURE__*/_interopDefaultLegacy(fs);var net__default=/*#__PURE__*/_interopDefaultLegacy(net);var zlib__default=/*#__PURE__*/_interopDefaultLegacy(zlib);function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
   }
@@ -56,21 +18,6 @@ function _createClass(Constructor, protoProps, staticProps) {
   if (protoProps) _defineProperties(Constructor.prototype, protoProps);
   if (staticProps) _defineProperties(Constructor, staticProps);
   return Constructor;
-}
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
 }
 
 function _inherits(subClass, superClass) {
@@ -2239,7 +2186,44 @@ eval("/* (ignored) */\n\n//# sourceURL=webpack://Quill/./util.inspect_(ignored)?
 
 /******/ })["default"];
 });
-});/**
+});var toolbar = [['bold', 'italic', 'underline', 'strike'], ['blockquote', 'code-block'], [{
+  list: 'ordered'
+}, {
+  list: 'bullet'
+}], [{
+  script: 'super'
+}], [{
+  indent: '-1'
+}, {
+  indent: '+1'
+}], [{
+  size: ['small', false, 'large', 'huge']
+}], [{
+  header: [1, 2, 3, 4, 5, 6, false]
+}], [{
+  color: []
+}, {
+  background: []
+}], [{
+  align: []
+}], ['link', 'image'], [{
+  table: 'TD'
+}, {
+  'table-insert-row': 'TIR'
+}, {
+  'table-insert-column': 'TIC'
+}, {
+  'table-delete-row': 'TDR'
+}, {
+  'table-delete-column': 'TDC'
+}], ['showHtml']];var ICON_SVGS = {
+  maxsize: "<svg viewBox=\"0 0 18 18\">\n      <path d=\"M2 6 L 2 2 6 2M12 2 L 16 2 16 6\" class=\"ql-stroke\"></path>\n      <path d=\"M2 12 L 2 16 6 16M12 16 L 16 16 16 12\" class=\"ql-stroke\"></path>\n    </svg>",
+  minsize: "<svg viewBox=\"0 0 18 18\">\n      <path d=\"M2 6 L 6 6 6 2M12 2 L 12 6 16 6\" class=\"ql-stroke\"></path>\n      <path d=\"M2 12 L 6 12 6 16M12 16 L 12 12 16 12\" class=\"ql-stroke\"></path>\n    </svg>",
+  'table-insert-row': "<svg viewbox=\"0 0 18 18\">\n    <g class=\"ql-fill ql-stroke ql-thin ql-transparent\">\n      <rect height=\"3\" rx=\"0.5\" ry=\"0.5\" width=\"7\" x=\"4.5\" y=\"2.5\"></rect>\n      <rect height=\"3\" rx=\"0.5\" ry=\"0.5\" width=\"7\" x=\"4.5\" y=\"12.5\"></rect>\n    </g>\n    <rect class=\"ql-fill ql-stroke ql-thin\" height=\"3\" rx=\"0.5\" ry=\"0.5\" width=\"7\" x=\"8.5\" y=\"7.5\"></rect>\n    <polygon class=\"ql-fill ql-stroke ql-thin\" points=\"4.5 11 2.5 9 4.5 7 4.5 11\"></polygon>\n    <line class=\"ql-stroke\" x1=\"6\" x2=\"4\" y1=\"9\" y2=\"9\"></line>\n  </svg>",
+  'table-insert-column': "<svg viewbox=\"0 0 18 18\">\n    <g class=\"ql-fill ql-transparent\">\n      <rect height=\"10\" rx=\"1\" ry=\"1\" width=\"4\" x=\"12\" y=\"2\"></rect>\n      <rect height=\"10\" rx=\"1\" ry=\"1\" width=\"4\" x=\"2\" y=\"2\"></rect>\n    </g>\n    <path class=\"ql-fill\" d=\"M11.354,4.146l-2-2a0.5,0.5,0,0,0-.707,0l-2,2A0.5,0.5,0,0,0,7,5H8V6a1,1,0,0,0,2,0V5h1A0.5,0.5,0,0,0,11.354,4.146Z\"></path>\n    <rect class=\"ql-fill\" height=\"8\" rx=\"1\" ry=\"1\" width=\"4\" x=\"7\" y=\"8\"></rect>\n  </svg>",
+  'table-delete-row': "<svg viewbox=\"0 0 18 18\">\n    <g class=\"ql-fill ql-stroke ql-thin ql-transparent\">\n      <rect height=\"3\" rx=\"0.5\" ry=\"0.5\" width=\"7\" x=\"4.5\" y=\"2.5\"></rect>\n      <rect height=\"3\" rx=\"0.5\" ry=\"0.5\" width=\"7\" x=\"4.5\" y=\"12.5\"></rect>\n    </g>\n    <rect class=\"ql-fill ql-stroke ql-thin\" height=\"3\" rx=\"0.5\" ry=\"0.5\" width=\"7\" x=\"8.5\" y=\"7.5\"></rect>\n    <line class=\"ql-stroke ql-thin\" x1=\"6.5\" x2=\"3.5\" y1=\"7.5\" y2=\"10.5\"></line>\n    <line class=\"ql-stroke ql-thin\" x1=\"3.5\" x2=\"6.5\" y1=\"7.5\" y2=\"10.5\"></line>\n  </svg>",
+  'table-delete-column': "<svg viewbox=\"0 0 18 18\">\n    <g class=\"ql-fill ql-transparent\">\n      <rect height=\"10\" rx=\"1\" ry=\"1\" width=\"4\" x=\"2\" y=\"6\"></rect>\n      <rect height=\"10\" rx=\"1\" ry=\"1\" width=\"4\" x=\"12\" y=\"6\"></rect>\n    </g>\n    <rect class=\"ql-fill\" height=\"8\" rx=\"1\" ry=\"1\" width=\"4\" x=\"7\" y=\"2\"></rect>\n    <path class=\"ql-fill\" d=\"M9.707,13l1.146-1.146a0.5,0.5,0,0,0-.707-0.707L9,12.293,7.854,11.146a0.5,0.5,0,0,0-.707.707L8.293,13,7.146,14.146a0.5,0.5,0,1,0,.707.707L9,13.707l1.146,1.146a0.5,0.5,0,0,0,.707-0.707Z\"></path>\n  </svg>"
+};/**
  * A specialized version of `_.forEach` for arrays without support for
  * iteratee shorthands.
  *
@@ -3086,12 +3070,7 @@ function forEach$1(collection, iteratee) {
   return func(collection, _castFunction(iteratee));
 }
 
-var forEach_1 = forEach$1;var ICON_SVGS = {
-  'table-insert-row': "<svg viewbox=\"0 0 18 18\">\n      <g class=\"ql-fill ql-stroke ql-thin ql-transparent\">\n        <rect height=\"3\" rx=\"0.5\" ry=\"0.5\" width=\"7\" x=\"4.5\" y=\"2.5\"></rect>\n        <rect height=\"3\" rx=\"0.5\" ry=\"0.5\" width=\"7\" x=\"4.5\" y=\"12.5\"></rect>\n      </g>\n      <rect class=\"ql-fill ql-stroke ql-thin\" height=\"3\" rx=\"0.5\" ry=\"0.5\" width=\"7\" x=\"8.5\" y=\"7.5\"></rect>\n      <polygon class=\"ql-fill ql-stroke ql-thin\" points=\"4.5 11 2.5 9 4.5 7 4.5 11\"></polygon>\n      <line class=\"ql-stroke\" x1=\"6\" x2=\"4\" y1=\"9\" y2=\"9\"></line>\n    </svg>",
-  'table-insert-column': "<svg viewbox=\"0 0 18 18\">\n      <g class=\"ql-fill ql-transparent\">\n        <rect height=\"10\" rx=\"1\" ry=\"1\" width=\"4\" x=\"12\" y=\"2\"></rect>\n        <rect height=\"10\" rx=\"1\" ry=\"1\" width=\"4\" x=\"2\" y=\"2\"></rect>\n      </g>\n      <path class=\"ql-fill\" d=\"M11.354,4.146l-2-2a0.5,0.5,0,0,0-.707,0l-2,2A0.5,0.5,0,0,0,7,5H8V6a1,1,0,0,0,2,0V5h1A0.5,0.5,0,0,0,11.354,4.146Z\"></path>\n      <rect class=\"ql-fill\" height=\"8\" rx=\"1\" ry=\"1\" width=\"4\" x=\"7\" y=\"8\"></rect>\n    </svg>",
-  'table-delete-row': "<svg viewbox=\"0 0 18 18\">\n      <g class=\"ql-fill ql-stroke ql-thin ql-transparent\">\n        <rect height=\"3\" rx=\"0.5\" ry=\"0.5\" width=\"7\" x=\"4.5\" y=\"2.5\"></rect>\n        <rect height=\"3\" rx=\"0.5\" ry=\"0.5\" width=\"7\" x=\"4.5\" y=\"12.5\"></rect>\n      </g>\n      <rect class=\"ql-fill ql-stroke ql-thin\" height=\"3\" rx=\"0.5\" ry=\"0.5\" width=\"7\" x=\"8.5\" y=\"7.5\"></rect>\n      <line class=\"ql-stroke ql-thin\" x1=\"6.5\" x2=\"3.5\" y1=\"7.5\" y2=\"10.5\"></line>\n      <line class=\"ql-stroke ql-thin\" x1=\"3.5\" x2=\"6.5\" y1=\"7.5\" y2=\"10.5\"></line>\n    </svg>",
-  'table-delete-column': "<svg viewbox=\"0 0 18 18\">\n      <g class=\"ql-fill ql-transparent\">\n        <rect height=\"10\" rx=\"1\" ry=\"1\" width=\"4\" x=\"2\" y=\"6\"></rect>\n        <rect height=\"10\" rx=\"1\" ry=\"1\" width=\"4\" x=\"12\" y=\"6\"></rect>\n      </g>\n      <rect class=\"ql-fill\" height=\"8\" rx=\"1\" ry=\"1\" width=\"4\" x=\"7\" y=\"2\"></rect>\n      <path class=\"ql-fill\" d=\"M9.707,13l1.146-1.146a0.5,0.5,0,0,0-.707-0.707L9,12.293,7.854,11.146a0.5,0.5,0,0,0-.707.707L8.293,13,7.146,14.146a0.5,0.5,0,1,0,.707.707L9,13.707l1.146,1.146a0.5,0.5,0,0,0,.707-0.707Z\"></path>\n    </svg>"
-};var bind = function bind(fn, thisArg) {
+var forEach_1 = forEach$1;var bind = function bind(fn, thisArg) {
   return function wrap() {
     var args = new Array(arguments.length);
     for (var i = 0; i < args.length; i++) {
@@ -6734,7 +6713,7 @@ var ImageUploader$1 = ImageUploader;var imageResize_min = createCommonjsModule(f
 !function(t,e){module.exports=e();}(commonjsGlobal,function(){return function(t){function e(o){if(n[o])return n[o].exports;var r=n[o]={i:o,l:!1,exports:{}};return t[o].call(r.exports,r,r.exports,e),r.l=!0,r.exports}var n={};return e.m=t,e.c=n,e.i=function(t){return t},e.d=function(t,n,o){e.o(t,n)||Object.defineProperty(t,n,{configurable:!1,enumerable:!0,get:o});},e.n=function(t){var n=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(n,"a",n),n},e.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},e.p="",e(e.s=38)}([function(t,e){function n(t){var e=typeof t;return null!=t&&("object"==e||"function"==e)}t.exports=n;},function(t,e,n){var o=n(22),r="object"==typeof self&&self&&self.Object===Object&&self,i=o||r||Function("return this")();t.exports=i;},function(t,e){function n(t){return null!=t&&"object"==typeof t}t.exports=n;},function(t,e,n){function o(t){var e=-1,n=null==t?0:t.length;for(this.clear();++e<n;){var o=t[e];this.set(o[0],o[1]);}}var r=n(75),i=n(76),a=n(77),s=n(78),u=n(79);o.prototype.clear=r,o.prototype.delete=i,o.prototype.get=a,o.prototype.has=s,o.prototype.set=u,t.exports=o;},function(t,e,n){function o(t,e){for(var n=t.length;n--;)if(r(t[n][0],e))return n;return -1}var r=n(8);t.exports=o;},function(t,e,n){function o(t){return null==t?void 0===t?u:s:c&&c in Object(t)?i(t):a(t)}var r=n(16),i=n(64),a=n(87),s="[object Null]",u="[object Undefined]",c=r?r.toStringTag:void 0;t.exports=o;},function(t,e,n){function o(t,e){var n=t.__data__;return r(e)?n["string"==typeof e?"string":"hash"]:n.map}var r=n(73);t.exports=o;},function(t,e,n){var o=n(11),r=o(Object,"create");t.exports=r;},function(t,e){function n(t,e){return t===e||t!==t&&e!==e}t.exports=n;},function(t,e,n){function o(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}n.d(e,"a",function(){return r});var r=function t(e){o(this,t),this.onCreate=function(){},this.onDestroy=function(){},this.onUpdate=function(){},this.quill=e.quill,this.overlay=e.overlay,this.img=e.img,this.options=e.options,this.requestUpdate=e.onUpdate;};},function(t,e,n){function o(t,e,n){"__proto__"==e&&r?r(t,e,{configurable:!0,enumerable:!0,value:n,writable:!0}):t[e]=n;}var r=n(21);t.exports=o;},function(t,e,n){function o(t,e){var n=i(t,e);return r(n)?n:void 0}var r=n(48),i=n(65);t.exports=o;},function(t,e,n){function o(t){return null!=t&&i(t.length)&&!r(t)}var r=n(13),i=n(30);t.exports=o;},function(t,e,n){function o(t){if(!i(t))return !1;var e=r(t);return e==s||e==u||e==a||e==c}var r=n(5),i=n(0),a="[object AsyncFunction]",s="[object Function]",u="[object GeneratorFunction]",c="[object Proxy]";t.exports=o;},function(t,e){t.exports=function(t){return t.webpackPolyfill||(t.deprecate=function(){},t.paths=[],t.children||(t.children=[]),Object.defineProperty(t,"loaded",{enumerable:!0,get:function(){return t.l}}),Object.defineProperty(t,"id",{enumerable:!0,get:function(){return t.i}}),t.webpackPolyfill=1),t};},function(t,e,n){var o=n(11),r=n(1),i=o(r,"Map");t.exports=i;},function(t,e,n){var o=n(1),r=o.Symbol;t.exports=r;},function(t,e){function n(t,e,n){switch(n.length){case 0:return t.call(e);case 1:return t.call(e,n[0]);case 2:return t.call(e,n[0],n[1]);case 3:return t.call(e,n[0],n[1],n[2])}return t.apply(e,n)}t.exports=n;},function(t,e,n){function o(t,e,n){(void 0===n||i(t[e],n))&&(void 0!==n||e in t)||r(t,e,n);}var r=n(10),i=n(8);t.exports=o;},function(t,e,n){function o(t,e,n,l,f){t!==e&&a(e,function(a,c){if(u(a))f||(f=new r),s(t,e,c,n,o,l,f);else {var p=l?l(t[c],a,c+"",t,e,f):void 0;void 0===p&&(p=a),i(t,c,p);}},c);}var r=n(41),i=n(18),a=n(46),s=n(51),u=n(0),c=n(32);t.exports=o;},function(t,e,n){function o(t,e){return a(i(t,e,r),t+"")}var r=n(26),i=n(89),a=n(90);t.exports=o;},function(t,e,n){var o=n(11),r=function(){try{var t=o(Object,"defineProperty");return t({},"",{}),t}catch(t){}}();t.exports=r;},function(t,e,n){(function(e){var n="object"==typeof e&&e&&e.Object===Object&&e;t.exports=n;}).call(e,n(107));},function(t,e,n){var o=n(88),r=o(Object.getPrototypeOf,Object);t.exports=r;},function(t,e){function n(t,e){return !!(e=null==e?o:e)&&("number"==typeof t||r.test(t))&&t>-1&&t%1==0&&t<e}var o=9007199254740991,r=/^(?:0|[1-9]\d*)$/;t.exports=n;},function(t,e){function n(t){var e=t&&t.constructor;return t===("function"==typeof e&&e.prototype||o)}var o=Object.prototype;t.exports=n;},function(t,e){function n(t){return t}t.exports=n;},function(t,e,n){var o=n(47),r=n(2),i=Object.prototype,a=i.hasOwnProperty,s=i.propertyIsEnumerable,u=o(function(){return arguments}())?o:function(t){return r(t)&&a.call(t,"callee")&&!s.call(t,"callee")};t.exports=u;},function(t,e){var n=Array.isArray;t.exports=n;},function(t,e,n){(function(t){var o=n(1),r=n(102),i="object"==typeof e&&e&&!e.nodeType&&e,a=i&&"object"==typeof t&&t&&!t.nodeType&&t,s=a&&a.exports===i,u=s?o.Buffer:void 0,c=u?u.isBuffer:void 0,l=c||r;t.exports=l;}).call(e,n(14)(t));},function(t,e){function n(t){return "number"==typeof t&&t>-1&&t%1==0&&t<=o}var o=9007199254740991;t.exports=n;},function(t,e,n){var o=n(49),r=n(54),i=n(86),a=i&&i.isTypedArray,s=a?r(a):o;t.exports=s;},function(t,e,n){function o(t){return a(t)?r(t,!0):i(t)}var r=n(43),i=n(50),a=n(12);t.exports=o;},function(t,e,n){e.a={modules:["DisplaySize","Toolbar","Resize"],overlayStyles:{position:"absolute",boxSizing:"border-box",border:"1px dashed #444"},handleStyles:{position:"absolute",height:"12px",width:"12px",backgroundColor:"white",border:"1px solid #777",boxSizing:"border-box",opacity:"0.80"},displayStyles:{position:"absolute",font:"12px/1.0 Arial, Helvetica, sans-serif",padding:"4px 8px",textAlign:"center",backgroundColor:"white",color:"#333",border:"1px solid #777",boxSizing:"border-box",opacity:"0.80",cursor:"default"},toolbarStyles:{position:"absolute",top:"-12px",right:"0",left:"0",height:"0",minWidth:"100px",font:"12px/1.0 Arial, Helvetica, sans-serif",textAlign:"center",color:"#333",boxSizing:"border-box",cursor:"default"},toolbarButtonStyles:{display:"inline-block",width:"24px",height:"24px",background:"white",border:"1px solid #999",verticalAlign:"middle"},toolbarButtonSvgStyles:{fill:"#444",stroke:"#444",strokeWidth:"2"}};},function(t,e,n){function o(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function r(t,e){if(!t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return !e||"object"!=typeof e&&"function"!=typeof e?t:e}function i(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);t.prototype=Object.create(e&&e.prototype,{constructor:{value:t,enumerable:!1,writable:!0,configurable:!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(t,e):t.__proto__=e);}var a=n(9);n.d(e,"a",function(){return s});var s=function(t){function e(){var t,n,i,a;o(this,e);for(var s=arguments.length,u=Array(s),c=0;c<s;c++)u[c]=arguments[c];return n=i=r(this,(t=e.__proto__||Object.getPrototypeOf(e)).call.apply(t,[this].concat(u))),i.onCreate=function(){i.display=document.createElement("div"),Object.assign(i.display.style,i.options.displayStyles),i.overlay.appendChild(i.display);},i.onDestroy=function(){},i.onUpdate=function(){if(i.display&&i.img){var t=i.getCurrentSize();if(i.display.innerHTML=t.join(" &times; "),t[0]>120&&t[1]>30)Object.assign(i.display.style,{right:"4px",bottom:"4px",left:"auto"});else if("right"==i.img.style.float){var e=i.display.getBoundingClientRect();Object.assign(i.display.style,{right:"auto",bottom:"-"+(e.height+4)+"px",left:"-"+(e.width+4)+"px"});}else {var n=i.display.getBoundingClientRect();Object.assign(i.display.style,{right:"-"+(n.width+4)+"px",bottom:"-"+(n.height+4)+"px",left:"auto"});}}},i.getCurrentSize=function(){return [i.img.width,Math.round(i.img.width/i.img.naturalWidth*i.img.naturalHeight)]},a=n,r(i,a)}return i(e,t),e}(a.a);},function(t,e,n){function o(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function r(t,e){if(!t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return !e||"object"!=typeof e&&"function"!=typeof e?t:e}function i(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);t.prototype=Object.create(e&&e.prototype,{constructor:{value:t,enumerable:!1,writable:!0,configurable:!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(t,e):t.__proto__=e);}var a=n(9);n.d(e,"a",function(){return s});var s=function(t){function e(){var t,n,i,a;o(this,e);for(var s=arguments.length,u=Array(s),c=0;c<s;c++)u[c]=arguments[c];return n=i=r(this,(t=e.__proto__||Object.getPrototypeOf(e)).call.apply(t,[this].concat(u))),i.onCreate=function(){i.boxes=[],i.addBox("nwse-resize"),i.addBox("nesw-resize"),i.addBox("nwse-resize"),i.addBox("nesw-resize"),i.positionBoxes();},i.onDestroy=function(){i.setCursor("");},i.positionBoxes=function(){var t=-parseFloat(i.options.handleStyles.width)/2+"px",e=-parseFloat(i.options.handleStyles.height)/2+"px";[{left:t,top:e},{right:t,top:e},{right:t,bottom:e},{left:t,bottom:e}].forEach(function(t,e){Object.assign(i.boxes[e].style,t);});},i.addBox=function(t){var e=document.createElement("div");Object.assign(e.style,i.options.handleStyles),e.style.cursor=t,e.style.width=i.options.handleStyles.width+"px",e.style.height=i.options.handleStyles.height+"px",e.addEventListener("mousedown",i.handleMousedown,!1),i.overlay.appendChild(e),i.boxes.push(e);},i.handleMousedown=function(t){i.dragBox=t.target,i.dragStartX=t.clientX,i.preDragWidth=i.img.width||i.img.naturalWidth,i.setCursor(i.dragBox.style.cursor),document.addEventListener("mousemove",i.handleDrag,!1),document.addEventListener("mouseup",i.handleMouseup,!1);},i.handleMouseup=function(){i.setCursor(""),document.removeEventListener("mousemove",i.handleDrag),document.removeEventListener("mouseup",i.handleMouseup);},i.handleDrag=function(t){if(i.img){var e=t.clientX-i.dragStartX;i.dragBox===i.boxes[0]||i.dragBox===i.boxes[3]?i.img.width=Math.round(i.preDragWidth-e):i.img.width=Math.round(i.preDragWidth+e),i.requestUpdate();}},i.setCursor=function(t){[document.body,i.img].forEach(function(e){e.style.cursor=t;});},a=n,r(i,a)}return i(e,t),e}(a.a);},function(t,e,n){function o(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function r(t,e){if(!t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return !e||"object"!=typeof e&&"function"!=typeof e?t:e}function i(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);t.prototype=Object.create(e&&e.prototype,{constructor:{value:t,enumerable:!1,writable:!0,configurable:!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(t,e):t.__proto__=e);}var a=n(105),s=n.n(a),u=n(104),c=n.n(u),l=n(106),f=n.n(l),p=n(9);n.d(e,"a",function(){return d});var d=function(t){function e(){var t,n,i,a;o(this,e);for(var u=arguments.length,l=Array(u),p=0;p<u;p++)l[p]=arguments[p];return n=i=r(this,(t=e.__proto__||Object.getPrototypeOf(e)).call.apply(t,[this].concat(l))),i.onCreate=function(){i.toolbar=document.createElement("div"),Object.assign(i.toolbar.style,i.options.toolbarStyles),i.overlay.appendChild(i.toolbar),i._defineAlignments(),i._addToolbarButtons();},i.onDestroy=function(){},i.onUpdate=function(){},i._defineAlignments=function(){var t=i.quill.constructor.imports.parchment,e=new t.StyleAttributor("float","float"),n=new t.StyleAttributor("margin","margin"),o=new t.StyleAttributor("display","display");i.alignments=[{icon:s.a,apply:function(){o.add(i.img,"inline"),e.add(i.img,"left"),n.add(i.img,"0 1em 1em 0");},isApplied:function(){return "left"==e.value(i.img)}},{icon:c.a,apply:function(){o.add(i.img,"block"),e.remove(i.img),n.add(i.img,"auto");},isApplied:function(){return "auto"==n.value(i.img)}},{icon:f.a,apply:function(){o.add(i.img,"inline"),e.add(i.img,"right"),n.add(i.img,"0 0 1em 1em");},isApplied:function(){return "right"==e.value(i.img)}}];},i._addToolbarButtons=function(){var t=i.quill.constructor.imports.parchment,e=new t.StyleAttributor("float","float"),n=new t.StyleAttributor("margin","margin"),o=new t.StyleAttributor("display","display"),r=[];i.alignments.forEach(function(t,a){var s=document.createElement("span");r.push(s),s.innerHTML=t.icon,s.addEventListener("click",function(){r.forEach(function(t){return t.style.filter=""}),t.isApplied()?(e.remove(i.img),n.remove(i.img),o.remove(i.img)):(i._selectButton(s),t.apply()),i.requestUpdate();}),Object.assign(s.style,i.options.toolbarButtonStyles),a>0&&(s.style.borderLeftWidth="0"),Object.assign(s.children[0].style,i.options.toolbarButtonSvgStyles),t.isApplied()&&i._selectButton(s),i.toolbar.appendChild(s);});},i._selectButton=function(t){t.style.filter="invert(20%)";},a=n,r(i,a)}return i(e,t),e}(p.a);},function(t,e,n){var o=n(17),r=n(20),i=n(63),a=n(101),s=r(function(t){return t.push(void 0,i),o(a,void 0,t)});t.exports=s;},function(t,e,n){function o(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(e,"__esModule",{value:!0});var r=n(37),i=n.n(r),a=n(33),s=n(34),u=n(36),c=n(35),l={DisplaySize:s.a,Toolbar:u.a,Resize:c.a},f=function t(e){var n=this,r=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};o(this,t),this.getQuillClass=function(){return n.quill.constructor},this.initializeModules=function(){n.removeModules(),n.modules=n.moduleClasses.map(function(t){return new(l[t]||t)(n)}),n.modules.forEach(function(t){t.onCreate();}),n.onUpdate();},this.onUpdate=function(){n.repositionElements(),n.modules.forEach(function(t){t.onUpdate();});},this.removeModules=function(){n.modules.forEach(function(t){t.onDestroy();}),n.modules=[];},this.handleClick=function(t){if(t.target&&t.target.tagName&&"IMG"===t.target.tagName.toUpperCase()){if(n.img===t.target)return;n.img&&n.hide(),n.show(t.target);}else n.img&&n.hide();},this.show=function(t){n.img=t,n.showOverlay(),n.initializeModules();},this.showOverlay=function(){n.overlay&&n.hideOverlay(),n.quill.setSelection(null),n.setUserSelect("none"),document.addEventListener("keyup",n.checkImage,!0),n.quill.root.addEventListener("input",n.checkImage,!0),n.overlay=document.createElement("div"),Object.assign(n.overlay.style,n.options.overlayStyles),n.quill.root.parentNode.appendChild(n.overlay),n.repositionElements();},this.hideOverlay=function(){n.overlay&&(n.quill.root.parentNode.removeChild(n.overlay),n.overlay=void 0,document.removeEventListener("keyup",n.checkImage),n.quill.root.removeEventListener("input",n.checkImage),n.setUserSelect(""));},this.repositionElements=function(){if(n.overlay&&n.img){var t=n.quill.root.parentNode,e=n.img.getBoundingClientRect(),o=t.getBoundingClientRect();Object.assign(n.overlay.style,{left:e.left-o.left-1+t.scrollLeft+"px",top:e.top-o.top+t.scrollTop+"px",width:e.width+"px",height:e.height+"px"});}},this.hide=function(){n.hideOverlay(),n.removeModules(),n.img=void 0;},this.setUserSelect=function(t){["userSelect","mozUserSelect","webkitUserSelect","msUserSelect"].forEach(function(e){n.quill.root.style[e]=t,document.documentElement.style[e]=t;});},this.checkImage=function(t){n.img&&(46!=t.keyCode&&8!=t.keyCode||n.getQuillClass().find(n.img).deleteAt(0),n.hide());},this.quill=e;var s=!1;r.modules&&(s=r.modules.slice()),this.options=i()({},r,a.a),s!==!1&&(this.options.modules=s),document.execCommand("enableObjectResizing",!1,"false"),this.quill.root.addEventListener("click",this.handleClick,!1),this.quill.root.addEventListener("scroll",this.hide,!1),this.quill.root.parentNode.style.position=this.quill.root.parentNode.style.position||"relative",this.moduleClasses=this.options.modules,this.modules=[];};e.default=f;},function(t,e,n){function o(t){var e=-1,n=null==t?0:t.length;for(this.clear();++e<n;){var o=t[e];this.set(o[0],o[1]);}}var r=n(66),i=n(67),a=n(68),s=n(69),u=n(70);o.prototype.clear=r,o.prototype.delete=i,o.prototype.get=a,o.prototype.has=s,o.prototype.set=u,t.exports=o;},function(t,e,n){function o(t){var e=-1,n=null==t?0:t.length;for(this.clear();++e<n;){var o=t[e];this.set(o[0],o[1]);}}var r=n(80),i=n(81),a=n(82),s=n(83),u=n(84);o.prototype.clear=r,o.prototype.delete=i,o.prototype.get=a,o.prototype.has=s,o.prototype.set=u,t.exports=o;},function(t,e,n){function o(t){var e=this.__data__=new r(t);this.size=e.size;}var r=n(3),i=n(92),a=n(93),s=n(94),u=n(95),c=n(96);o.prototype.clear=i,o.prototype.delete=a,o.prototype.get=s,o.prototype.has=u,o.prototype.set=c,t.exports=o;},function(t,e,n){var o=n(1),r=o.Uint8Array;t.exports=r;},function(t,e,n){function o(t,e){var n=a(t),o=!n&&i(t),l=!n&&!o&&s(t),p=!n&&!o&&!l&&c(t),d=n||o||l||p,h=d?r(t.length,String):[],y=h.length;for(var v in t)!e&&!f.call(t,v)||d&&("length"==v||l&&("offset"==v||"parent"==v)||p&&("buffer"==v||"byteLength"==v||"byteOffset"==v)||u(v,y))||h.push(v);return h}var r=n(53),i=n(27),a=n(28),s=n(29),u=n(24),c=n(31),l=Object.prototype,f=l.hasOwnProperty;t.exports=o;},function(t,e,n){function o(t,e,n){var o=t[e];s.call(t,e)&&i(o,n)&&(void 0!==n||e in t)||r(t,e,n);}var r=n(10),i=n(8),a=Object.prototype,s=a.hasOwnProperty;t.exports=o;},function(t,e,n){var o=n(0),r=Object.create,i=function(){function t(){}return function(e){if(!o(e))return {};if(r)return r(e);t.prototype=e;var n=new t;return t.prototype=void 0,n}}();t.exports=i;},function(t,e,n){var o=n(62),r=o();t.exports=r;},function(t,e,n){function o(t){return i(t)&&r(t)==a}var r=n(5),i=n(2),a="[object Arguments]";t.exports=o;},function(t,e,n){function o(t){return !(!a(t)||i(t))&&(r(t)?d:u).test(s(t))}var r=n(13),i=n(74),a=n(0),s=n(97),u=/^\[object .+?Constructor\]$/,c=Function.prototype,l=Object.prototype,f=c.toString,p=l.hasOwnProperty,d=RegExp("^"+f.call(p).replace(/[\\^$.*+?()[\]{}|]/g,"\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g,"$1.*?")+"$");t.exports=o;},function(t,e,n){function o(t){return a(t)&&i(t.length)&&!!s[r(t)]}var r=n(5),i=n(30),a=n(2),s={};s["[object Float32Array]"]=s["[object Float64Array]"]=s["[object Int8Array]"]=s["[object Int16Array]"]=s["[object Int32Array]"]=s["[object Uint8Array]"]=s["[object Uint8ClampedArray]"]=s["[object Uint16Array]"]=s["[object Uint32Array]"]=!0,s["[object Arguments]"]=s["[object Array]"]=s["[object ArrayBuffer]"]=s["[object Boolean]"]=s["[object DataView]"]=s["[object Date]"]=s["[object Error]"]=s["[object Function]"]=s["[object Map]"]=s["[object Number]"]=s["[object Object]"]=s["[object RegExp]"]=s["[object Set]"]=s["[object String]"]=s["[object WeakMap]"]=!1,t.exports=o;},function(t,e,n){function o(t){if(!r(t))return a(t);var e=i(t),n=[];for(var o in t)("constructor"!=o||!e&&u.call(t,o))&&n.push(o);return n}var r=n(0),i=n(25),a=n(85),s=Object.prototype,u=s.hasOwnProperty;t.exports=o;},function(t,e,n){function o(t,e,n,o,g,x,m){var _=t[n],j=e[n],w=m.get(j);if(w)return void r(t,n,w);var O=x?x(_,j,n+"",t,e,m):void 0,S=void 0===O;if(S){var A=l(j),E=!A&&p(j),z=!A&&!E&&v(j);O=j,A||E||z?l(_)?O=_:f(_)?O=s(_):E?(S=!1,O=i(j,!0)):z?(S=!1,O=a(j,!0)):O=[]:y(j)||c(j)?(O=_,c(_)?O=b(_):(!h(_)||o&&d(_))&&(O=u(j))):S=!1;}S&&(m.set(j,O),g(O,j,o,x,m),m.delete(j)),r(t,n,O);}var r=n(18),i=n(56),a=n(57),s=n(58),u=n(71),c=n(27),l=n(28),f=n(99),p=n(29),d=n(13),h=n(0),y=n(100),v=n(31),b=n(103);t.exports=o;},function(t,e,n){var o=n(98),r=n(21),i=n(26),a=r?function(t,e){return r(t,"toString",{configurable:!0,enumerable:!1,value:o(e),writable:!0})}:i;t.exports=a;},function(t,e){function n(t,e){for(var n=-1,o=Array(t);++n<t;)o[n]=e(n);return o}t.exports=n;},function(t,e){function n(t){return function(e){return t(e)}}t.exports=n;},function(t,e,n){function o(t){var e=new t.constructor(t.byteLength);return new r(e).set(new r(t)),e}var r=n(42);t.exports=o;},function(t,e,n){(function(t){function o(t,e){if(e)return t.slice();var n=t.length,o=c?c(n):new t.constructor(n);return t.copy(o),o}var r=n(1),i="object"==typeof e&&e&&!e.nodeType&&e,a=i&&"object"==typeof t&&t&&!t.nodeType&&t,s=a&&a.exports===i,u=s?r.Buffer:void 0,c=u?u.allocUnsafe:void 0;t.exports=o;}).call(e,n(14)(t));},function(t,e,n){function o(t,e){var n=e?r(t.buffer):t.buffer;return new t.constructor(n,t.byteOffset,t.length)}var r=n(55);t.exports=o;},function(t,e){function n(t,e){var n=-1,o=t.length;for(e||(e=Array(o));++n<o;)e[n]=t[n];return e}t.exports=n;},function(t,e,n){function o(t,e,n,o){var a=!n;n||(n={});for(var s=-1,u=e.length;++s<u;){var c=e[s],l=o?o(n[c],t[c],c,n,t):void 0;void 0===l&&(l=t[c]),a?i(n,c,l):r(n,c,l);}return n}var r=n(44),i=n(10);t.exports=o;},function(t,e,n){var o=n(1),r=o["__core-js_shared__"];t.exports=r;},function(t,e,n){function o(t){return r(function(e,n){var o=-1,r=n.length,a=r>1?n[r-1]:void 0,s=r>2?n[2]:void 0;for(a=t.length>3&&"function"==typeof a?(r--,a):void 0,s&&i(n[0],n[1],s)&&(a=r<3?void 0:a,r=1),e=Object(e);++o<r;){var u=n[o];u&&t(e,u,o,a);}return e})}var r=n(20),i=n(72);t.exports=o;},function(t,e){function n(t){return function(e,n,o){for(var r=-1,i=Object(e),a=o(e),s=a.length;s--;){var u=a[t?s:++r];if(n(i[u],u,i)===!1)break}return e}}t.exports=n;},function(t,e,n){function o(t,e,n,a,s,u){return i(t)&&i(e)&&(u.set(e,t),r(t,e,void 0,o,u),u.delete(e)),t}var r=n(19),i=n(0);t.exports=o;},function(t,e,n){function o(t){var e=a.call(t,u),n=t[u];try{t[u]=void 0;}catch(t){}var o=s.call(t);return e?t[u]=n:delete t[u],o}var r=n(16),i=Object.prototype,a=i.hasOwnProperty,s=i.toString,u=r?r.toStringTag:void 0;t.exports=o;},function(t,e){function n(t,e){return null==t?void 0:t[e]}t.exports=n;},function(t,e,n){function o(){this.__data__=r?r(null):{},this.size=0;}var r=n(7);t.exports=o;},function(t,e){function n(t){var e=this.has(t)&&delete this.__data__[t];return this.size-=e?1:0,e}t.exports=n;},function(t,e,n){function o(t){var e=this.__data__;if(r){var n=e[t];return n===i?void 0:n}return s.call(e,t)?e[t]:void 0}var r=n(7),i="__lodash_hash_undefined__",a=Object.prototype,s=a.hasOwnProperty;t.exports=o;},function(t,e,n){function o(t){var e=this.__data__;return r?void 0!==e[t]:a.call(e,t)}var r=n(7),i=Object.prototype,a=i.hasOwnProperty;t.exports=o;},function(t,e,n){function o(t,e){var n=this.__data__;return this.size+=this.has(t)?0:1,n[t]=r&&void 0===e?i:e,this}var r=n(7),i="__lodash_hash_undefined__";t.exports=o;},function(t,e,n){function o(t){return "function"!=typeof t.constructor||a(t)?{}:r(i(t))}var r=n(45),i=n(23),a=n(25);t.exports=o;},function(t,e,n){function o(t,e,n){if(!s(n))return !1;var o=typeof e;return !!("number"==o?i(n)&&a(e,n.length):"string"==o&&e in n)&&r(n[e],t)}var r=n(8),i=n(12),a=n(24),s=n(0);t.exports=o;},function(t,e){function n(t){var e=typeof t;return "string"==e||"number"==e||"symbol"==e||"boolean"==e?"__proto__"!==t:null===t}t.exports=n;},function(t,e,n){function o(t){return !!i&&i in t}var r=n(60),i=function(){var t=/[^.]+$/.exec(r&&r.keys&&r.keys.IE_PROTO||"");return t?"Symbol(src)_1."+t:""}();t.exports=o;},function(t,e){function n(){this.__data__=[],this.size=0;}t.exports=n;},function(t,e,n){function o(t){var e=this.__data__,n=r(e,t);return !(n<0)&&(n==e.length-1?e.pop():a.call(e,n,1),--this.size,!0)}var r=n(4),i=Array.prototype,a=i.splice;t.exports=o;},function(t,e,n){function o(t){var e=this.__data__,n=r(e,t);return n<0?void 0:e[n][1]}var r=n(4);t.exports=o;},function(t,e,n){function o(t){return r(this.__data__,t)>-1}var r=n(4);t.exports=o;},function(t,e,n){function o(t,e){var n=this.__data__,o=r(n,t);return o<0?(++this.size,n.push([t,e])):n[o][1]=e,this}var r=n(4);t.exports=o;},function(t,e,n){function o(){this.size=0,this.__data__={hash:new r,map:new(a||i),string:new r};}var r=n(39),i=n(3),a=n(15);t.exports=o;},function(t,e,n){function o(t){var e=r(this,t).delete(t);return this.size-=e?1:0,e}var r=n(6);t.exports=o;},function(t,e,n){function o(t){return r(this,t).get(t)}var r=n(6);t.exports=o;},function(t,e,n){function o(t){return r(this,t).has(t)}var r=n(6);t.exports=o;},function(t,e,n){function o(t,e){var n=r(this,t),o=n.size;return n.set(t,e),this.size+=n.size==o?0:1,this}var r=n(6);t.exports=o;},function(t,e){function n(t){var e=[];if(null!=t)for(var n in Object(t))e.push(n);return e}t.exports=n;},function(t,e,n){(function(t){var o=n(22),r="object"==typeof e&&e&&!e.nodeType&&e,i=r&&"object"==typeof t&&t&&!t.nodeType&&t,a=i&&i.exports===r,s=a&&o.process,u=function(){try{return s&&s.binding&&s.binding("util")}catch(t){}}();t.exports=u;}).call(e,n(14)(t));},function(t,e){function n(t){return r.call(t)}var o=Object.prototype,r=o.toString;t.exports=n;},function(t,e){function n(t,e){return function(n){return t(e(n))}}t.exports=n;},function(t,e,n){function o(t,e,n){return e=i(void 0===e?t.length-1:e,0),function(){for(var o=arguments,a=-1,s=i(o.length-e,0),u=Array(s);++a<s;)u[a]=o[e+a];a=-1;for(var c=Array(e+1);++a<e;)c[a]=o[a];return c[e]=n(u),r(t,this,c)}}var r=n(17),i=Math.max;t.exports=o;},function(t,e,n){var o=n(52),r=n(91),i=r(o);t.exports=i;},function(t,e){function n(t){var e=0,n=0;return function(){var a=i(),s=r-(a-n);if(n=a,s>0){if(++e>=o)return arguments[0]}else e=0;return t.apply(void 0,arguments)}}var o=800,r=16,i=Date.now;t.exports=n;},function(t,e,n){function o(){this.__data__=new r,this.size=0;}var r=n(3);t.exports=o;},function(t,e){function n(t){var e=this.__data__,n=e.delete(t);return this.size=e.size,n}t.exports=n;},function(t,e){function n(t){return this.__data__.get(t)}t.exports=n;},function(t,e){function n(t){return this.__data__.has(t)}t.exports=n;},function(t,e,n){function o(t,e){var n=this.__data__;if(n instanceof r){var o=n.__data__;if(!i||o.length<s-1)return o.push([t,e]),this.size=++n.size,this;n=this.__data__=new a(o);}return n.set(t,e),this.size=n.size,this}var r=n(3),i=n(15),a=n(40),s=200;t.exports=o;},function(t,e){function n(t){if(null!=t){try{return r.call(t)}catch(t){}try{return t+""}catch(t){}}return ""}var o=Function.prototype,r=o.toString;t.exports=n;},function(t,e){function n(t){return function(){return t}}t.exports=n;},function(t,e,n){function o(t){return i(t)&&r(t)}var r=n(12),i=n(2);t.exports=o;},function(t,e,n){function o(t){if(!a(t)||r(t)!=s)return !1;var e=i(t);if(null===e)return !0;var n=f.call(e,"constructor")&&e.constructor;return "function"==typeof n&&n instanceof n&&l.call(n)==p}var r=n(5),i=n(23),a=n(2),s="[object Object]",u=Function.prototype,c=Object.prototype,l=u.toString,f=c.hasOwnProperty,p=l.call(Object);t.exports=o;},function(t,e,n){var o=n(19),r=n(61),i=r(function(t,e,n,r){o(t,e,n,r);});t.exports=i;},function(t,e){function n(){return !1}t.exports=n;},function(t,e,n){function o(t){return r(t,i(t))}var r=n(59),i=n(32);t.exports=o;},function(t,e){t.exports='<svg viewbox="0 0 18 18">\n  <line class="ql-stroke" x1="15" x2="3" y1="9" y2="9"></line>\n  <line class="ql-stroke" x1="14" x2="4" y1="14" y2="14"></line>\n  <line class="ql-stroke" x1="12" x2="6" y1="4" y2="4"></line>\n</svg>';},function(t,e){t.exports='<svg viewbox="0 0 18 18">\n  <line class="ql-stroke" x1="3" x2="15" y1="9" y2="9"></line>\n  <line class="ql-stroke" x1="3" x2="13" y1="14" y2="14"></line>\n  <line class="ql-stroke" x1="3" x2="9" y1="4" y2="4"></line>\n</svg>';},function(t,e){t.exports='<svg viewbox="0 0 18 18">\n  <line class="ql-stroke" x1="15" x2="3" y1="9" y2="9"></line>\n  <line class="ql-stroke" x1="15" x2="5" y1="14" y2="14"></line>\n  <line class="ql-stroke" x1="15" x2="9" y1="4" y2="4"></line>\n</svg>';},function(t,e){var n;n=function(){return this}();try{n=n||Function("return this")()||(0,eval)("this");}catch(t){"object"==typeof window&&(n=window);}t.exports=n;}])});
 });var viewSource = createCommonjsModule(function (module, exports) {
 
-  Object.defineProperty(exports, "__esModule", {
+  Object.defineProperty(exports, '__esModule', {
     value: true
   });
 
@@ -6764,15 +6743,16 @@ var ImageUploader$1 = ImageUploader;var imageResize_min = createCommonjsModule(f
       var toolbarEl = this.toolbar.container;
       var buttonContainer = document.createElement('span');
       buttonContainer.setAttribute('class', 'ql-formats');
+      buttonContainer.style = 'float: right;margin-right: 0;';
       var button = document.createElement('button');
-      button.innerHTML = '<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="code" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M278.9 511.5l-61-17.7c-6.4-1.8-10-8.5-8.2-14.9L346.2 8.7c1.8-6.4 8.5-10 14.9-8.2l61 17.7c6.4 1.8 10 8.5 8.2 14.9L293.8 503.3c-1.9 6.4-8.5 10.1-14.9 8.2zm-114-112.2l43.5-46.4c4.6-4.9 4.3-12.7-.8-17.2L117 256l90.6-79.7c5.1-4.5 5.5-12.3.8-17.2l-43.5-46.4c-4.5-4.8-12.1-5.1-17-.5L3.8 247.2c-5.1 4.7-5.1 12.8 0 17.5l144.1 135.1c4.9 4.6 12.5 4.4 17-.5zm327.2.6l144.1-135.1c5.1-4.7 5.1-12.8 0-17.5L492.1 112.1c-4.8-4.5-12.4-4.3-17 .5L431.6 159c-4.6 4.9-4.3 12.7.8 17.2L523 256l-90.6 79.7c-5.1 4.5-5.5 12.3-.8 17.2l43.5 46.4c4.5 4.9 12.1 5.1 17 .6z"></path></svg>';
+      button.innerHTML = '<svg version="1.1" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><g><path d="m12.309 3.4883v2.207l3.3047 3.3047-3.3047 3.3086v2.2031l5.5117-5.5117z"/><path d="m5.6953 5.6953v-2.207l-5.5156 5.5117 5.5156 5.5117v-2.2031l-3.3086-3.3086z"/><path d="m10.102 6.7969-4.4062 4.4062h2.2031l4.4102-4.4062z"/></g></svg>';
       button.type = 'button';
       button.classList.add(this.classToolbarButton); // event binding
 
       button.onclick = function (e) {
         e.preventDefault();
 
-        var htmlEditor = _this.container.querySelector("." + _this.classEditor);
+        var htmlEditor = _this.container.querySelector('.' + _this.classEditor);
 
         var htmlTextArea = htmlEditor.querySelector('textarea');
         htmlEditor.style.display = _this.showingHtml ? 'none' : '';
@@ -6802,7 +6782,7 @@ var ImageUploader$1 = ImageUploader;var imageResize_min = createCommonjsModule(f
 
 
     QuillHtmlSourceModule.prototype.initHtmlTextArea = function () {
-      var htmlTextAreaEditor = this.container.querySelector("." + this.classEditor);
+      var htmlTextAreaEditor = this.container.querySelector('.' + this.classEditor);
 
       if (htmlTextAreaEditor == null) {
         // Textarea
@@ -6812,7 +6792,7 @@ var ImageUploader$1 = ImageUploader;var imageResize_min = createCommonjsModule(f
 
         var htmlEditor = document.createElement('div');
         htmlEditor.classList.add(this.classEditor);
-        htmlEditor.style.cssText = 'position: absolute; height: 100%; width: 100%; display: none';
+        htmlEditor.style.cssText = 'position: absolute; height: 100%; width: 100%; display: none;';
         htmlEditor.appendChild(txtArea);
         this.container.appendChild(htmlEditor);
       }
@@ -6824,269 +6804,60 @@ var ImageUploader$1 = ImageUploader;var imageResize_min = createCommonjsModule(f
   exports.default = QuillHtmlSourceModule;
 });
 var QuillHtmlSourceButton = viewSource;//
-
-quill.register("modules/imageUploader", ImageUploader$1); // import ImageResize from '../image-size/ImageResize';
-
-quill.register("modules/imageResize", imageResize_min);
-
-quill.register("modules/htmlSource", QuillHtmlSourceButton);
-
-var Quill = window.Quill || quill; // pollfill
-
-if (typeof Object.assign != "function") {
-  Object.defineProperty(Object, "assign", {
-    value: function value(target) {
-      if (target == null) {
-        throw new TypeError("Cannot convert undefined or null to object");
-      }
-
-      var to = Object(target);
-
-      for (var index = 1; index < arguments.length; index++) {
-        var nextSource = arguments[index];
-
-        if (nextSource != null) {
-          for (var nextKey in nextSource) {
-            if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
-              to[nextKey] = nextSource[nextKey];
-            }
-          }
-        }
-      }
-
-      return to;
-    },
-    writable: true,
-    configurable: true
-  });
-}
-
-var script$1 = {
-  name: "quill-editor",
-  data: function data() {
-    var _this = this;
-
-    return {
-      _options: {},
-      _content: "",
-      defaultOptions: {
-        theme: "snow",
-        modules: {
-          table: true,
-          imageResize: {},
-          imageUploader: {
-            upload: function upload(file) {
-              return _this.actImageUploadHandler(file);
-            }
-          },
-          htmlSource: {},
-          toolbar: {
-            container: [["bold", "italic", "underline", "strike"], ["blockquote", "code-block"], [{
-              list: "ordered"
-            }, {
-              list: "bullet"
-            }], [{
-              script: "super"
-            }], [{
-              indent: "-1"
-            }, {
-              indent: "+1"
-            }], [{
-              size: ["small", false, "large", "huge"]
-            }], [{
-              header: [1, 2, 3, 4, 5, 6, false]
-            }], [{
-              color: []
-            }, {
-              background: []
-            }], [{
-              align: []
-            }], ["link", "image"], [{
-              table: "TD"
-            }, {
-              "table-insert-row": "TIR"
-            }, {
-              "table-insert-column": "TIC"
-            }, {
-              "table-delete-row": "TDR"
-            }, {
-              "table-delete-column": "TDC"
-            }], ["showHtml"]],
-            handlers: {
-              table: this.actTableHandler,
-              "table-insert-row": this.actTableInsertRowHandler,
-              "table-insert-column": this.actTableInsertColumnHandler,
-              "table-delete-row": this.actTableDeleteRowHandler,
-              "table-delete-column": this.actTableDeleteColumnHandler
-            }
-          }
-        },
-        placeholder: this.placeholder || "Insert text here ...",
-        readOnly: false
-      },
-      quill: quill
-    };
-  },
+quill.register('modules/imageUploader', ImageUploader$1);
+quill.register('modules/imageResize', imageResize_min);
+quill.register('modules/htmlSource', QuillHtmlSourceButton);
+var script = {
+  name: 'VueQuillS3',
   props: {
-    content: String,
     value: String,
-    disabled: {
+    width: Number,
+    height: Number,
+    placeholder: String,
+    toolbar: [Object, Array],
+    zIndex: [String, Number],
+    fullscreen: {
       type: Boolean,
       default: false
     },
-    options: {
-      type: Object,
-      required: false,
-      default: function _default() {
-        return {};
-      }
-    },
-    globalOptions: {
-      type: Object,
-      required: false,
-      default: function _default() {
-        return {};
-      }
-    },
     signedParams: {
       type: Object,
-      required: false,
       default: function _default() {
-        return {};
-      }
-    }
-  },
-  mounted: function mounted() {
-    this.initCustomToolbarIcon();
-    this.initialize();
-  },
-  beforeDestroy: function beforeDestroy() {
-    this.quill = null;
-    delete this.quill;
-  },
-  methods: {
-    initCustomToolbarIcon: function initCustomToolbarIcon() {
-      var icons = Quill.import("ui/icons");
-      forEach_1(ICON_SVGS, function (iconValue, iconName) {
-        icons[iconName] = iconValue;
-      });
-    },
-    initialize: function initialize() {
-      var _this2 = this;
-
-      if (this.$el) {
-        this._options = Object.assign({}, this.defaultOptions, this.globalOptions, this.options); // Instance
-
-        this.quill = new Quill(this.$refs.editor, this._options);
-        this.quill.enable(false);
-
-        if (this.value || this.content) {
-          var delta = this.value || this.content;
-
-          if (Array.isArray(delta)) {
-            this.quill.setContents(delta, "silent");
-          } else {
-            var htmlData = this.quill.clipboard.convert({
-              html: delta
-            });
-            this.quill.setContents(htmlData, "silent");
-          }
-        }
-
-        if (!this.disabled) {
-          this.quill.enable(true);
-        }
-
-        this.quill.on("selection-change", function (range) {
-          if (!range) {
-            _this2.$emit("blur", _this2.quill);
-          } else {
-            _this2.$emit("focus", _this2.quill);
-          }
-        });
-        this.quill.on("text-change", function (delta, oldDelta, source) {
-          var html = _this2.$refs.editor.children[0].innerHTML;
-          var quill = _this2.quill;
-
-          var text = _this2.quill.getText();
-
-          if (html === "<p><br></p>") html = "";
-          _this2._content = html; // this.$emit('input', this._content);
-
-          _this2.$emit("change", {
-            html: html,
-            text: text,
-            quill: quill
-          });
-        });
-        this.$emit("ready", this.quill);
+        return {
+          path: 'news/tepm',
+          url: 'https://api.boholight.co/upload/publish'
+        };
       }
     },
-    actTableHandler: function actTableHandler() {
-      this.quill.getModule("table").insertTable(2, 3);
+    syncOutput: {
+      type: Boolean,
+      default: true
     },
-    actTableInsertRowHandler: function actTableInsertRowHandler() {
-      this.quill.getModule("table").insertRowBelow();
+    theme: {
+      type: String,
+      default: 'snow'
     },
-    actTableInsertColumnHandler: function actTableInsertColumnHandler() {
-      this.quill.getModule("table").insertColumnRight();
-    },
-    actTableDeleteRowHandler: function actTableDeleteRowHandler() {
-      this.quill.getModule("table").deleteRow();
-    },
-    actTableDeleteColumnHandler: function actTableDeleteColumnHandler() {
-      this.quill.getModule("table").deleteColumn();
-    },
-    actImageUploadHandler: function actImageUploadHandler(file) {
-      return new Promise(function (resolve, reject) {
-        var type = file.type,
-            name = file.name;
-        var _signedParams = signedParams,
-            path = _signedParams.path,
-            url = _signedParams.url;
-        var filePath = path + "/" + name;
-        var fileType = type;
-        var signedUrl = url;
-
-        try {
-          return axios({
-            method: "POST",
-            url: signedUrl,
-            headers: {
-              "Content-Type": "application/json"
-            },
-            data: {
-              filePath: filePath,
-              fileType: fileType
-            }
-          }).then(function (res) {
-            var statusHeader = res.status,
-                data = res.data;
-            if (statusHeader !== 200) reject("Upload failed");
-            var signedRequest = data.signedRequest,
-                url = data.url,
-                status = data.status;
-            if (!status) reject("Upload failed");
-            axios.put(signedRequest, file, {
-              headers: {
-                "Content-Type": fileType
-              }
-            }).then(function (res) {
-              if (!res.status) reject("Upload failed");
-              resolve(url);
-            }).catch(function (error) {
-              console.error("Error:", error);
-              reject("Upload failed");
-            });
-          });
-        } catch (err) {
-          console.error("Error:", error);
-          reject("Upload failed");
-        }
-      });
+    hasBorder: Boolean,
+    disabled: Boolean,
+    imgAccept: String,
+    showFullButton: {
+      type: Boolean,
+      default: true
     }
+  },
+  data: function data() {
+    return {
+      content: '',
+      isFullscreen: this.fullscreen,
+      quill: null,
+      Quill: quill,
+      icons: null
+    };
   },
   watch: {
+    fullscreen: function fullscreen(val) {
+      this.isFullscreen = val;
+    },
     content: function content(newVal) {
       if (this.quill) {
         var newValHtml = this.quill.clipboard.convert({
@@ -7097,7 +6868,7 @@ var script$1 = {
           this._content = newValHtml;
           this.quill.setContents(newValHtml);
         } else if (!newVal) {
-          this.quill.setText("");
+          this.quill.setText('');
         }
       }
     },
@@ -7111,15 +6882,209 @@ var script$1 = {
           this._content = newValHtml;
           this.quill.setContents(newValHtml);
         } else if (!newValHtml) {
-          this.quill.setText("");
+          this.quill.setText('');
         }
       }
     },
-    disabled: function disabled(newVal) {
-      if (this.quill) {
-        this.quill.enable(!newVal);
-      }
+    disabled: function disabled(newVal, oldVal) {
+      this.setDisabled(newVal);
     }
+  },
+  methods: {
+    initCustomToolbarIcon: function initCustomToolbarIcon() {
+      var _this = this;
+
+      this.icons = quill.import('ui/icons');
+      forEach_1(ICON_SVGS, function (iconValue, iconName) {
+        _this.icons[iconName] = iconValue;
+      });
+    },
+    initialize: function initialize() {
+      var _this2 = this;
+
+      var quillEditor = this.$refs.quillEditor;
+      var quill$1 = new quill(quillEditor, {
+        debug: 'warn',
+        modules: {
+          table: true,
+          imageResize: {},
+          imageUploader: {
+            upload: function upload(file) {
+              return _this2.actImageUploadHandler(file);
+            }
+          },
+          htmlSource: {},
+          toolbar: {
+            container: this.toolbar || toolbar,
+            handlers: {
+              table: this.actTableHandler,
+              'table-insert-row': this.actTableInsertRowHandler,
+              'table-insert-column': this.actTableInsertColumnHandler,
+              'table-delete-row': this.actTableDeleteRowHandler,
+              'table-delete-column': this.actTableDeleteColumnHandler
+            }
+          }
+        },
+        placeholder: this.placeholder || 'Insert text here ...',
+        theme: this.theme
+      });
+      this.quill = quill$1;
+      this.quill.enable(false);
+
+      if (this.value || this.content) {
+        var delta = this.value || this.content;
+
+        if (Array.isArray(delta)) {
+          this.quill.setContents(delta, 'silent');
+        } else {
+          var htmlData = this.quill.clipboard.convert({
+            html: delta
+          });
+          this.quill.setContents(htmlData, 'silent');
+        }
+      }
+
+      if (this.theme === 'snow' && this.showFullButton) {
+        this.initFullBtn();
+      }
+
+      if (!this.disabled) {
+        this.quill.enable(true);
+      }
+
+      quill$1.on('text-change', function (delta, oldDelta, source) {
+        var html = _this2.$refs.quillEditor.children[0].innerHTML;
+        var quill = _this2.quill;
+
+        var text = _this2.quill.getText();
+
+        if (html === '<p><br></p>') html = '';
+        _this2._content = html;
+
+        _this2.$emit('change', {
+          html: html,
+          text: text,
+          quill: quill
+        });
+      });
+      quill$1.on('selection-change', function (range) {
+        if (!range) {
+          _this2.$emit('blur', _this2.quill);
+        } else {
+          _this2.$emit('focus', _this2.quill);
+        }
+      });
+      this.$emit('init', quill$1, this);
+    },
+    initFullBtn: function initFullBtn() {
+      var _this3 = this;
+
+      var childs = this.$refs.quillEditorBox.children;
+      var fullBtn = document.createElement('SPAN');
+      fullBtn.className = 'ql-formats ql-resize';
+      fullBtn.style = 'float: right;margin-right: 0;';
+      var that = this;
+
+      function setSizeBtn() {
+        var icon = '';
+
+        if (that.isFullscreen) {
+          icon = that.icons.minsize;
+        } else {
+          icon = that.icons.maxsize;
+        }
+
+        fullBtn.innerHTML = '<button type="button" class="ql-fullscreen">' + icon + '</button>';
+      }
+
+      setSizeBtn();
+      fullBtn.addEventListener('click', function () {
+        _this3.isFullscreen = !_this3.isFullscreen;
+        setSizeBtn();
+      }, false);
+
+      for (var i in childs) {
+        if (childs[i].className.indexOf('ql-toolbar') > -1) {
+          childs[i].append(fullBtn);
+          break;
+        }
+      }
+    },
+    setDisabled: function setDisabled(val) {
+      this.quill.enable(!val);
+    },
+    getContent: function getContent(val) {
+      return this.quill.container.firstChild.innerHTML;
+    },
+    actTableHandler: function actTableHandler() {
+      this.quill.getModule('table').insertTable(2, 3);
+    },
+    actTableInsertRowHandler: function actTableInsertRowHandler() {
+      this.quill.getModule('table').insertRowBelow();
+    },
+    actTableInsertColumnHandler: function actTableInsertColumnHandler() {
+      this.quill.getModule('table').insertColumnRight();
+    },
+    actTableDeleteRowHandler: function actTableDeleteRowHandler() {
+      this.quill.getModule('table').deleteRow();
+    },
+    actTableDeleteColumnHandler: function actTableDeleteColumnHandler() {
+      this.quill.getModule('table').deleteColumn();
+    },
+    actImageUploadHandler: function actImageUploadHandler(file) {
+      var _this4 = this;
+
+      return new Promise(function (resolve, reject) {
+        var type = file.type,
+            name = file.name;
+        var _this4$signedParams = _this4.signedParams,
+            path = _this4$signedParams.path,
+            url = _this4$signedParams.url;
+        var filePath = path + '/' + name;
+        var fileType = type;
+        var signedUrl = url;
+
+        try {
+          return axios({
+            method: 'POST',
+            url: signedUrl,
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            data: {
+              filePath: filePath,
+              fileType: fileType
+            }
+          }).then(function (res) {
+            var statusHeader = res.status,
+                data = res.data;
+            if (statusHeader !== 200) reject('Upload failed');
+            var signedRequest = data.signedRequest,
+                url = data.url,
+                status = data.status;
+            if (!status) reject('Upload failed');
+            axios.put(signedRequest, file, {
+              headers: {
+                'Content-Type': fileType
+              }
+            }).then(function (res) {
+              if (!res.status) reject('Upload failed');
+              resolve(url);
+            }).catch(function (error) {
+              console.error('Error:', error);
+              reject('Upload failed');
+            });
+          });
+        } catch (err) {
+          console.error('Error:', error);
+          reject('Upload failed');
+        }
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.initCustomToolbarIcon();
+    this.initialize();
   }
 };function normalizeComponent(template, style, script, scopeId, isFunctionalTemplate, moduleIdentifier /* server only */, shadowMode, createInjector, createInjectorSSR, createInjectorShadow) {
     if (typeof shadowMode !== 'boolean') {
@@ -7195,157 +7160,6 @@ var script$1 = {
     }
     return script;
 }/* script */
-var __vue_script__$1 = script$1;
-/* template */
-
-var __vue_render__$1 = function __vue_render__() {
-  var _vm = this;
-
-  var _h = _vm.$createElement;
-
-  var _c = _vm._self._c || _h;
-
-  return _c('div', {
-    staticClass: "quill-editor"
-  }, [_vm._t("toolbar"), _vm._ssrNode(" <div></div>")], 2);
-};
-
-var __vue_staticRenderFns__$1 = [];
-/* style */
-
-var __vue_inject_styles__$1 = undefined;
-/* scoped */
-
-var __vue_scope_id__$1 = undefined;
-/* module identifier */
-
-var __vue_module_identifier__$1 = "data-v-b5106594";
-/* functional template */
-
-var __vue_is_functional_template__$1 = false;
-/* style inject */
-
-/* style inject SSR */
-
-/* style inject shadow dom */
-
-var __vue_component__$2 = /*#__PURE__*/normalizeComponent({
-  render: __vue_render__$1,
-  staticRenderFns: __vue_staticRenderFns__$1
-}, __vue_inject_styles__$1, __vue_script__$1, __vue_scope_id__$1, __vue_is_functional_template__$1, __vue_module_identifier__$1, false, undefined, undefined, undefined);
-
-var quillEditor = __vue_component__$2;var script = {
-  components: {
-    quillEditor: quillEditor
-  },
-  props: {
-    value: {
-      type: String,
-      default: ""
-    },
-    settings: {
-      type: Object,
-      default: function _default() {}
-    },
-    signedParams: {
-      type: Object,
-      default: function _default() {}
-    },
-    height: {
-      type: Number,
-      default: 500
-    },
-    editable: {
-      type: Boolean,
-      default: true
-    }
-  },
-  data: function data() {
-    return {
-      content: "",
-      tableModule: null
-    };
-  },
-  watch: {
-    content: function content(val) {
-      console.log(val);
-    }
-  },
-  created: function created() {},
-  methods: {
-    onEditorBlur: function onEditorBlur(quill) {
-      console.log("editor blur!", quill);
-    },
-    onEditorFocus: function onEditorFocus(quill) {
-      console.log("editor focus!", quill);
-    },
-    onEditorReady: function onEditorReady(quill) {
-      console.log("editor ready!", quill);
-    },
-    onEditorChange: function onEditorChange(_ref) {
-      var quill = _ref.quill,
-          html = _ref.html,
-          text = _ref.text;
-      console.log("editor change!", quill, html, text);
-      this.$emit("input", {
-        quill: quill,
-        html: html,
-        text: text
-      });
-    }
-  },
-  computed: {
-    useSettings: function useSettings() {
-      var _this = this;
-
-      return _objectSpread2(_objectSpread2({}, defSettings), _this.settings);
-    },
-    editor: function editor() {
-      return this.$refs.myQuillEditor.quill;
-    }
-  },
-  mounted: function mounted() {}
-};function createInjectorSSR(context) {
-    if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__;
-    }
-    if (!context)
-        return () => { };
-    if (!('styles' in context)) {
-        context._styles = context._styles || {};
-        Object.defineProperty(context, 'styles', {
-            enumerable: true,
-            get: () => context._renderStyles(context._styles)
-        });
-        context._renderStyles = context._renderStyles || renderStyles;
-    }
-    return (id, style) => addStyle(id, style, context);
-}
-function addStyle(id, css, context) {
-    const group = css.media || 'default' ;
-    const style = context._styles[group] || (context._styles[group] = { ids: [], css: '' });
-    if (!style.ids.includes(id)) {
-        style.media = css.media;
-        style.ids.push(id);
-        let code = css.source;
-        style.css += code + '\n';
-    }
-}
-function renderStyles(styles) {
-    let css = '';
-    for (const key in styles) {
-        const style = styles[key];
-        css +=
-            '<style data-vue-ssr-id="' +
-                Array.from(style.ids).join(' ') +
-                '"' +
-                (style.media ? ' media="' + style.media + '"' : '') +
-                '>' +
-                style.css +
-                '</style>';
-    }
-    return css;
-}/* script */
 var __vue_script__ = script;
 /* template */
 
@@ -7356,71 +7170,49 @@ var __vue_render__ = function __vue_render__() {
 
   var _c = _vm._self._c || _h;
 
-  return _c('quill-editor', {
-    ref: "myQuillEditor",
-    style: "height:" + _vm.height + "px;",
-    attrs: {
-      "options": _vm.settings,
-      "disabled": !_vm.editable,
-      "signed-params": _vm.signedParams
+  return _c('div', {
+    ref: "quillEditorBox",
+    staticClass: "quill-editor",
+    class: {
+      'quill-fullscreen': _vm.isFullscreen,
+      'quill-no-border': !_vm.hasBorder,
+      disabled: _vm.disabled
     },
-    on: {
-      "blur": function blur($event) {
-        return _vm.onEditorBlur($event);
-      },
-      "focus": function focus($event) {
-        return _vm.onEditorFocus($event);
-      },
-      "change": function change($event) {
-        return _vm.onEditorChange($event);
-      },
-      "ready": function ready($event) {
-        return _vm.onEditorReady($event);
-      }
-    },
-    model: {
-      value: _vm.content,
-      callback: function callback($$v) {
-        _vm.content = $$v;
-      },
-      expression: "content"
+    style: {
+      width: _vm.isFullscreen ? '' : _vm.width + 'px',
+      height: _vm.isFullscreen ? '' : _vm.height + 'px',
+      zIndex: _vm.zIndex
     }
-  });
+  }, [_vm._ssrNode("<div></div> <input type=\"file\"" + _vm._ssrAttr("accept", _vm.imgAccept) + " style=\"display: none\">")]);
 };
 
 var __vue_staticRenderFns__ = [];
 /* style */
 
-var __vue_inject_styles__ = function __vue_inject_styles__(inject) {
-  if (!inject) return;
-  inject("data-v-65507dfe_0", {
-    source: "[data-v-65507dfe] .ql-container{font-size:inherit;font-family:inherit}",
-    map: undefined,
-    media: undefined
-  }), inject("data-v-65507dfe_1", {
-    source: ".ql-editor{font-size:16px}.ql-snow .ql-stroke.ql-thin,.ql-snow .ql-thin{stroke-width:1px!important}.quillWrapper .ql-snow.ql-toolbar{padding-top:8px;padding-bottom:4px}.quillWrapper .ql-snow.ql-toolbar button{margin:1px}.quillWrapper .ql-snow.ql-toolbar .ql-formats{margin-bottom:10px}.ql-snow .ql-toolbar button svg,.quillWrapper .ql-snow.ql-toolbar button svg{width:22px;height:22px}.quillWrapper .ql-editor ul[data-checked=false]>li::before,.quillWrapper .ql-editor ul[data-checked=true]>li::before{font-size:1.35em;vertical-align:baseline;bottom:-.065em;font-weight:900;color:#222}.quillWrapper .ql-snow .ql-stroke{stroke:rgba(63,63,63,.95);stroke-linecap:square;stroke-linejoin:initial;stroke-width:1.7px}.quillWrapper .ql-picker-label{font-size:15px}.quillWrapper .ql-snow .ql-active .ql-stroke{stroke-width:2.25px}.quillWrapper .ql-toolbar.ql-snow .ql-formats{vertical-align:top}.image-uploading{position:relative;display:inline-block}.image-uploading img{max-width:98%!important;filter:blur(5px);opacity:.3}.image-uploading::before{content:\"\";box-sizing:border-box;position:absolute;top:50%;left:50%;width:30px;height:30px;margin-top:-15px;margin-left:-15px;border-radius:50%;border:3px solid #ccc;border-top-color:#1e986c;z-index:1;animation:spinner .6s linear infinite}@keyframes spinner{to{transform:rotate(360deg)}}",
-    map: undefined,
-    media: undefined
-  });
-};
+var __vue_inject_styles__ = undefined;
 /* scoped */
 
-
-var __vue_scope_id__ = "data-v-65507dfe";
+var __vue_scope_id__ = undefined;
 /* module identifier */
 
-var __vue_module_identifier__ = "data-v-65507dfe";
+var __vue_module_identifier__ = "data-v-f6171b9c";
 /* functional template */
 
 var __vue_is_functional_template__ = false;
+/* style inject */
+
+/* style inject SSR */
+
 /* style inject shadow dom */
 
 var __vue_component__ = /*#__PURE__*/normalizeComponent({
   render: __vue_render__,
   staticRenderFns: __vue_staticRenderFns__
-}, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, false, undefined, createInjectorSSR, undefined);
+}, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, false, undefined, undefined, undefined);
 
-var __vue_component__$1 = __vue_component__;/* eslint-disable import/prefer-default-export */var components$1=/*#__PURE__*/Object.freeze({__proto__:null,VueQuillS3:__vue_component__$1});var install = function installVueQuillS3(Vue) {
+var VueQuillS3 = __vue_component__;VueQuillS3.install = function (Vue) {
+  Vue.component(VueQuillS3.name, VueQuillS3);
+};var components$1=/*#__PURE__*/Object.freeze({__proto__:null,'default':VueQuillS3,VueQuillS3:VueQuillS3});var install = function installVueQuillS3(Vue) {
   Object.entries(components$1).forEach(function (_ref) {
     var _ref2 = _slicedToArray(_ref, 2),
         componentName = _ref2[0],
@@ -7429,7 +7221,7 @@ var __vue_component__$1 = __vue_component__;/* eslint-disable import/prefer-defa
     Vue.component(componentName, component);
   });
 }; // Create module definition for Vue.use()
-var components=/*#__PURE__*/Object.freeze({__proto__:null,'default':install,VueQuillS3:__vue_component__$1});// only expose one global var, with component exports exposed as properties of
+var components=/*#__PURE__*/Object.freeze({__proto__:null,'default':install,VueQuillS3:VueQuillS3});// only expose one global var, with component exports exposed as properties of
 // that global var (eg. plugin.component)
 
 Object.entries(components).forEach(function (_ref) {

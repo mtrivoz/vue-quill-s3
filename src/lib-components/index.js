@@ -1,2 +1,11 @@
-/* eslint-disable import/prefer-default-export */
-export { default as VueQuillS3} from './vue-quill-s3.vue';
+import VueQuillS3 from './vue-quill-s3.vue'
+
+VueQuillS3.install = function (Vue) {
+  Vue.component(VueQuillS3.name, VueQuillS3)
+}
+
+export {
+  VueQuillS3 as default,
+  VueQuillS3
+}
+ 

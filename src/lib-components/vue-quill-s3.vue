@@ -1,188 +1,318 @@
 <template>
-  <quill-editor
-    ref="myQuillEditor"
-    v-model="content"
-    :style="`height:${height}px;`"
-    :options="settings"
-    :disabled="!editable"
-    :signed-params="signedParams"
-    @blur="onEditorBlur($event)"
-    @focus="onEditorFocus($event)"
-    @change="onEditorChange($event)"
-    @ready="onEditorReady($event)"
-  />
+  <div
+    class="quill-editor"
+    ref="quillEditorBox"
+    :class="{
+      'quill-fullscreen': isFullscreen,
+      'quill-no-border': !hasBorder,
+      disabled: disabled,
+    }"
+    :style="{
+      width: isFullscreen ? '' : width + 'px',
+      height: isFullscreen ? '' : height + 'px',
+      zIndex: zIndex,
+    }"
+  >
+    <div ref="quillEditor"></div>
+    <input
+      type="file"
+      :accept="imgAccept"
+      ref="img-input"
+      style="display: none"
+    />
+  </div>
 </template>
+<script type="text/javascript">
+import Quill from 'quill';
+import toolbar from './toolbar';
+import 'quill/dist/quill.core.css';
+import 'quill/dist/quill.bubble.css';
+import 'quill/dist/quill.snow.css';
+import ICON_SVGS from './icons';
+import './quill-editor.css';
+import forEach from 'lodash/forEach';
+import axios from 'axios';
 
-<script>
-import { quillEditor } from "../vue-quill";
+import ImageUploader from './modules/image-uploader/index.js';
+Quill.register('modules/imageUploader', ImageUploader);
+
+import ImageResize from 'quill-image-resize-module-withfix';
+Quill.register('modules/imageResize', ImageResize);
+
+import QuillHtmlSourceButton from './modules/view-source/index.js';
+Quill.register('modules/htmlSource', QuillHtmlSourceButton);
 
 export default {
-  components: {
-    quillEditor,
-  },
+  name: 'VueQuillS3',
   props: {
-    value: {
-      type: String,
-      default: "",
-    },
-    settings: {
-      type: Object,
-      default: () => {},
+    value: String,
+    width: Number,
+    height: Number,
+    placeholder: String,
+    toolbar: [Object, Array],
+    zIndex: [String, Number],
+    fullscreen: {
+      type: Boolean,
+      default: false,
     },
     signedParams: {
       type: Object,
-      default: () => {},
+      default: () => ({
+        path: 'news/tepm',
+        url: 'https://api.boholight.co/upload/publish',
+      }),
     },
-    height: {
-      type: Number,
-      default: 500,
+    syncOutput: {
+      type: Boolean,
+      default: true,
     },
-    editable: {
+    theme: {
+      type: String,
+      default: 'snow',
+    },
+    hasBorder: Boolean,
+    disabled: Boolean,
+    imgAccept: String,
+    showFullButton: {
       type: Boolean,
       default: true,
     },
   },
-
   data() {
     return {
-      content: "",
-      tableModule: null,
+      content: '',
+      isFullscreen: this.fullscreen,
+      quill: null,
+      Quill: Quill,
+      icons: null,
     };
   },
 
   watch: {
-    content(val) {
-      console.log(val);
+    fullscreen(val) {
+      this.isFullscreen = val;
+    },
+
+    content(newVal) {
+      if (this.quill) {
+        let newValHtml = this.quill.clipboard.convert({
+          html: newVal,
+        });
+        if (newValHtml && newValHtml !== this._content) {
+          this._content = newValHtml;
+
+          this.quill.setContents(newValHtml);
+        } else if (!newVal) {
+          this.quill.setText('');
+        }
+      }
+    },
+
+    value(newVal) {
+      if (this.quill) {
+        let newValHtml = this.quill.clipboard.convert({
+          html: newVal,
+        });
+        if (newValHtml && newValHtml !== this._content) {
+          this._content = newValHtml;
+          this.quill.setContents(newValHtml);
+        } else if (!newValHtml) {
+          this.quill.setText('');
+        }
+      }
+    },
+    disabled(newVal, oldVal) {
+      this.setDisabled(newVal);
     },
   },
-
-  created() {},
-
   methods: {
-    onEditorBlur(quill) {
-      console.log("editor blur!", quill);
+    initCustomToolbarIcon() {
+      this.icons = Quill.import('ui/icons');
+
+      forEach(ICON_SVGS, (iconValue, iconName) => {
+        this.icons[iconName] = iconValue;
+      });
     },
 
-    onEditorFocus(quill) {
-      console.log("editor focus!", quill);
+    initialize() {
+      const quillEditor = this.$refs.quillEditor;
+      const quill = new Quill(quillEditor, {
+        debug: 'warn',
+        modules: {
+          table: true,
+          imageResize: {},
+          imageUploader: {
+            upload: (file) => this.actImageUploadHandler(file),
+          },
+          htmlSource: {},
+          toolbar: {
+            container: this.toolbar || toolbar,
+            handlers: {
+              table: this.actTableHandler,
+              'table-insert-row': this.actTableInsertRowHandler,
+              'table-insert-column': this.actTableInsertColumnHandler,
+              'table-delete-row': this.actTableDeleteRowHandler,
+              'table-delete-column': this.actTableDeleteColumnHandler,
+            },
+          },
+        },
+        placeholder: this.placeholder || 'Insert text here ...',
+        theme: this.theme,
+      });
+      this.quill = quill;
+
+      this.quill.enable(false);
+
+      if (this.value || this.content) {
+        const delta = this.value || this.content;
+        if (Array.isArray(delta)) {
+          this.quill.setContents(delta, 'silent');
+        } else {
+          const htmlData = this.quill.clipboard.convert({
+            html: delta,
+          });
+          this.quill.setContents(htmlData, 'silent');
+        }
+      }
+
+      if (this.theme === 'snow' && this.showFullButton) {
+        this.initFullBtn();
+      }
+
+      if (!this.disabled) {
+        this.quill.enable(true);
+      }
+
+      quill.on('text-change', (delta, oldDelta, source) => {
+        let html = this.$refs.quillEditor.children[0].innerHTML;
+        const quill = this.quill;
+        const text = this.quill.getText();
+        if (html === '<p><br></p>') html = '';
+        this._content = html;
+        this.$emit('change', { html, text, quill });
+      });
+
+      quill.on('selection-change', (range) => {
+        if (!range) {
+          this.$emit('blur', this.quill);
+        } else {
+          this.$emit('focus', this.quill);
+        }
+      });
+
+      this.$emit('init', quill, this);
     },
 
-    onEditorReady(quill) {
-      console.log("editor ready!", quill);
+    initFullBtn() {
+      const childs = this.$refs.quillEditorBox.children;
+      const fullBtn = document.createElement('SPAN');
+      fullBtn.className = 'ql-formats ql-resize';
+      fullBtn.style = 'float: right;margin-right: 0;';
+      const that = this;
+      function setSizeBtn() {
+        let icon = '';
+        if (that.isFullscreen) {
+          icon = that.icons.minsize;
+        } else {
+          icon = that.icons.maxsize;
+        }
+        fullBtn.innerHTML =
+          '<button type="button" class="ql-fullscreen">' + icon + '</button>';
+      }
+
+      setSizeBtn();
+
+      fullBtn.addEventListener(
+        'click',
+        () => {
+          this.isFullscreen = !this.isFullscreen;
+          setSizeBtn();
+        },
+        false
+      );
+      for (let i in childs) {
+        if (childs[i].className.indexOf('ql-toolbar') > -1) {
+          childs[i].append(fullBtn);
+          break;
+        }
+      }
     },
 
-    onEditorChange({ quill, html, text }) {
-      console.log("editor change!", quill, html, text);
-      this.$emit("input", { quill, html, text });
+    setDisabled(val) {
+      this.quill.enable(!val);
+    },
+
+    getContent(val) {
+      return this.quill.container.firstChild.innerHTML;
+    },
+
+    actTableHandler() {
+      this.quill.getModule('table').insertTable(2, 3);
+    },
+
+    actTableInsertRowHandler() {
+      this.quill.getModule('table').insertRowBelow();
+    },
+
+    actTableInsertColumnHandler() {
+      this.quill.getModule('table').insertColumnRight();
+    },
+
+    actTableDeleteRowHandler() {
+      this.quill.getModule('table').deleteRow();
+    },
+
+    actTableDeleteColumnHandler() {
+      this.quill.getModule('table').deleteColumn();
+    },
+
+    actImageUploadHandler(file) {
+      return new Promise((resolve, reject) => {
+        const { type, name } = file;
+        const { path, url } = this.signedParams;
+        const filePath = path + '/' + name;
+        const fileType = type;
+        const signedUrl = url;
+
+        try {
+          return axios({
+            method: 'POST',
+            url: signedUrl,
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            data: { filePath, fileType },
+          }).then((res) => {
+            const { status: statusHeader, data } = res;
+            if (statusHeader !== 200) reject('Upload failed');
+            const { signedRequest, url, status } = data;
+            if (!status) reject('Upload failed');
+            axios
+              .put(signedRequest, file, {
+                headers: {
+                  'Content-Type': fileType,
+                },
+              })
+              .then((res) => {
+                if (!res.status) reject('Upload failed');
+                resolve(url);
+              })
+              .catch(function (error) {
+                console.error('Error:', error);
+                reject('Upload failed');
+              });
+          });
+        } catch (err) {
+          console.error('Error:', error);
+          reject('Upload failed');
+        }
+      });
     },
   },
-  computed: {
-    useSettings: function () {
-      const _this = this;
-      return {
-        ...defSettings,
-        ..._this.settings,
-      };
-    },
 
-    editor() {
-      return this.$refs.myQuillEditor.quill;
-    },
+  mounted() {
+    this.initCustomToolbarIcon();
+    this.initialize();
   },
-  mounted() {},
 };
 </script>
-
-<style scoped>
-@import "./quill.core.css";
-@import "./quill.snow.css";
-@import "./quill.bubble.css";
-
-::v-deep .ql-container {
-  font-size: inherit;
-  font-family: inherit;
-}
-</style>
-<style>
-.ql-editor {
-  font-size: 16px;
-}
-
-.ql-snow .ql-thin,
-.ql-snow .ql-stroke.ql-thin {
-  stroke-width: 1px !important;
-}
-.quillWrapper .ql-snow.ql-toolbar {
-  padding-top: 8px;
-  padding-bottom: 4px;
-}
-.quillWrapper .ql-snow.ql-toolbar button {
-  margin: 1px;
-}
-.quillWrapper .ql-snow.ql-toolbar .ql-formats {
-  margin-bottom: 10px;
-}
-.quillWrapper .ql-snow.ql-toolbar button svg,
-.ql-snow .ql-toolbar button svg {
-  width: 22px;
-  height: 22px;
-}
-.quillWrapper .ql-editor ul[data-checked="true"] > li::before,
-.quillWrapper .ql-editor ul[data-checked="false"] > li::before {
-  font-size: 1.35em;
-  vertical-align: baseline;
-  bottom: -0.065em;
-  font-weight: 900;
-  color: #222;
-}
-.quillWrapper .ql-snow .ql-stroke {
-  stroke: rgba(63, 63, 63, 0.95);
-  stroke-linecap: square;
-  stroke-linejoin: initial;
-  stroke-width: 1.7px;
-}
-.quillWrapper .ql-picker-label {
-  font-size: 15px;
-}
-.quillWrapper .ql-snow .ql-active .ql-stroke {
-  stroke-width: 2.25px;
-}
-.quillWrapper .ql-toolbar.ql-snow .ql-formats {
-  vertical-align: top;
-}
-
-/* quill.imageUploader.css */
-.image-uploading {
-  position: relative;
-  display: inline-block;
-}
-
-.image-uploading img {
-  max-width: 98% !important;
-  filter: blur(5px);
-  opacity: 0.3;
-}
-
-.image-uploading::before {
-  content: "";
-  box-sizing: border-box;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 30px;
-  height: 30px;
-  margin-top: -15px;
-  margin-left: -15px;
-  border-radius: 50%;
-  border: 3px solid #ccc;
-  border-top-color: #1e986c;
-  z-index: 1;
-  animation: spinner 0.6s linear infinite;
-}
-
-@keyframes spinner {
-  to {
-    transform: rotate(360deg);
-  }
-}
-</style>

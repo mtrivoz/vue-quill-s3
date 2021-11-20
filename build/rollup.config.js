@@ -8,6 +8,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import babel from '@rollup/plugin-babel';
 import { terser } from 'rollup-plugin-terser';
+import css from "rollup-plugin-import-css";
 import minimist from 'minimist';
 
 // Get browserslist config and remove ie from es build targets
@@ -105,6 +106,7 @@ if (!argv.format || argv.format === 'es') {
           ],
         ],
       }),
+      css()
     ],
   };
   buildFormats.push(esConfig);
@@ -134,6 +136,7 @@ if (!argv.format || argv.format === 'cjs') {
       }),
       ...baseConfig.plugins.postVue,
       babel(baseConfig.plugins.babel),
+      css()
     ],
   };
   buildFormats.push(umdConfig);
@@ -162,6 +165,7 @@ if (!argv.format || argv.format === 'iife') {
           ecma: 5,
         },
       }),
+      css()
     ],
   };
   buildFormats.push(unpkgConfig);
