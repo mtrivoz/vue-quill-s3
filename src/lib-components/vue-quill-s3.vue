@@ -341,8 +341,3 @@ export default {
   }
 };
 </script>
-
-<style src="quill/dist/quill.snow.css"></style>
-<style src="quill/dist/quill.core.css"></style>
-<style src="quill/dist/quill.bubble.css"></style>
-<style src="./assets/quill-editor.css" lang="css"></style>
