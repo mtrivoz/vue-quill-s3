@@ -10,7 +10,6 @@
 
 .quill-editor .ql-toolbar.ql-snow{
   box-sizing: border-box;
-  height: 42px;
 }
 .quill-editor .ql-toolbar.ql-snow .ql-fill,
 .quill-editor .ql-toolbar.ql-snow .ql-stroke.ql-fill{
