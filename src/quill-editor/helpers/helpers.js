@@ -7,7 +7,7 @@ export const convertToSlug = str => {
   str = str.replace(/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/g, 'u')
   str = str.replace(/(ỳ|ý|ỵ|ỷ|ỹ)/g, 'y')
   str = str.replace(/(đ)/g, 'd')
-  str = str.replace(/\`|\~|\!|\@|\#|\||\$|\%|\^|\&|\*|\(|\)|\+|\=|\,|\.|\/|\?|\>|\<|\'|\"|\:|\;/g,
+  str = str.replace(/\\`|\\~|\\!|\\@|\\#|\||\$|\\%|\^|\\&|\*|\(|\)|\+|\\=|\\,|\.|\/|\?|\\>|\\<|\\'|\\"|\\:|\\;/g,
     '')
   str = str.replace(/!([^0-9a-z-_\s])/g, '')
   str = str.replace(/_/g, '-')
