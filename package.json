@@ -33,9 +33,7 @@
     "axios": "^0.24.0",
     "lodash": "^4.17.21",
     "quill": "2.0.0-dev.4",
-    "quill-image-resize-module-withfix": "^4.0.1",
-    "rollup-plugin-import-css": "^3.0.2",
-    "webpack": "^5.64.2"
+    "quill-image-resize-module-withfix": "^4.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
@@ -52,11 +50,13 @@
     "rimraf": "^3.0.2",
     "rollup": "^2.52.8",
     "rollup-plugin-browsersync": "^1.3.3",
+    "rollup-plugin-import-css": "^3.0.2",
     "rollup-plugin-stylelint": "^1.0.0",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-vue": "^5.1.9",
     "vue": "^2.6.14",
-    "vue-template-compiler": "^2.6.14"
+    "vue-template-compiler": "^2.6.14",
+    "webpack": "^4.0.0"
   },
   "peerDependencies": {
     "vue": "^2.6.14"

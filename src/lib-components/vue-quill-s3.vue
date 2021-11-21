@@ -1,98 +1,111 @@
 <template>
   <div
-    class="quill-editor"
     ref="quillEditorBox"
+    class="quill-editor"
     :class="{
       'quill-fullscreen': isFullscreen,
       'quill-no-border': !hasBorder,
-      disabled: disabled,
+      disabled: disabled
     }"
     :style="{
       width: isFullscreen ? '' : width + 'px',
       height: isFullscreen ? '' : height + 'px',
-      zIndex: zIndex,
+      zIndex: zIndex
     }"
   >
     <div ref="quillEditor"></div>
-    <input
-      type="file"
-      :accept="imgAccept"
-      ref="img-input"
-      style="display: none"
-    />
   </div>
 </template>
-<script type="text/javascript">
-import _Quill from "../../node_modules/quill/dist/quill";
-import __Quill from 'quill';
-import toolbar from './toolbar';
-import '../../node_modules/quill/dist/quill.core.css';
-import '../../node_modules/quill/dist/quill.bubble.css';
-import '../../node_modules/quill/dist/quill.snow.css';
-import 'quill/dist/quill.core.css';
-import 'quill/dist/quill.bubble.css';
-import 'quill/dist/quill.snow.css';
-import ICON_SVGS from './icons';
-import './quill-editor.css';
-import forEach from 'lodash/forEach';
-import axios from 'axios';
 
-const Quill = window.Quill || _Quill || __Quill
+<script>
+import _Quill from "quill";
+import toolbar from "./helpers/toolbar.js";
+import ICON_SVGS from "./helpers/icons.js";
+import ImageUploader from "./modules/image-uploader/index.js";
+import ImageResize from "quill-image-resize-module-withfix";
+import QuillHtmlSourceButton from "./modules/view-source/index.js";
+import forEach from "lodash/forEach";
+import axios from "axios";
 
-import ImageUploader from './modules/image-uploader/index.js';
-Quill.register('modules/imageUploader', ImageUploader);
+import "quill/dist/quill.snow.css"
+import "quill/dist/quill.core.css"
+import "quill/dist/quill.bubble.css"
+import "./assets/quill-editor.css"
 
-import ImageResize from 'quill-image-resize-module-withfix';
-Quill.register('modules/imageResize', ImageResize);
+const Quill = window.Quill || _Quill
 
-import QuillHtmlSourceButton from './modules/view-source/index.js';
-Quill.register('modules/htmlSource', QuillHtmlSourceButton);
+Quill.register("modules/imageUploader", ImageUploader);
+Quill.register("modules/imageResize", ImageResize);
+Quill.register("modules/htmlSource", QuillHtmlSourceButton);
+
 
 export default {
-  name: 'VueQuillS3',
+  name: "VueEditor",
   props: {
-    value: String,
-    width: Number,
-    height: Number,
-    placeholder: String,
-    toolbar: [Object, Array],
-    zIndex: [String, Number],
+    value: {
+      type: String,
+      default: ""
+    },
+    width: {
+      type: Number,
+      default: null
+    },
+    height: {
+      type: Number,
+      default: null
+    },
+    placeholder: {
+      type: String,
+      default: ""
+    },
+    toolbar: {
+      type: Array,
+      default: () => null
+    },
+    zIndex: {
+      type: Number,
+      default: null
+    },
     fullscreen: {
       type: Boolean,
-      default: false,
+      default: false
     },
     signedParams: {
       type: Object,
+      // default: () => ({
+      //   path: "",
+      //   url: ""
+      // })
       default: () => ({
-        path: 'news/tepm',
-        url: 'https://api.boholight.co/upload/publish',
-      }),
-    },
-    syncOutput: {
-      type: Boolean,
-      default: true,
+        path: "news/tepm",
+        url: "https://api.boholight.co/upload/publish"
+      })
     },
     theme: {
       type: String,
-      default: 'snow',
+      default: "snow"
     },
-    hasBorder: Boolean,
-    disabled: Boolean,
-    imgAccept: String,
+    hasBorder: {
+      type: Boolean,
+      default: true
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
     showFullButton: {
       type: Boolean,
-      default: true,
-    },
+      default: true
+    }
   },
-  data() {
-    return {
-      content: '',
-      isFullscreen: this.fullscreen,
-      quill: null,
-      Quill: Quill,
-      icons: null,
-    };
-  },
+
+  data: () => ({
+    content: "",
+    isFullscreen: false,
+    quill: null,
+    Quill: Quill,
+    icons: null
+  }),
 
   watch: {
     fullscreen(val) {
@@ -102,14 +115,14 @@ export default {
     content(newVal) {
       if (this.quill) {
         let newValHtml = this.quill.clipboard.convert({
-          html: newVal,
+          html: newVal
         });
         if (newValHtml && newValHtml !== this._content) {
           this._content = newValHtml;
 
           this.quill.setContents(newValHtml);
         } else if (!newVal) {
-          this.quill.setText('');
+          this.quill.setText("");
         }
       }
     },
@@ -117,23 +130,34 @@ export default {
     value(newVal) {
       if (this.quill) {
         let newValHtml = this.quill.clipboard.convert({
-          html: newVal,
+          html: newVal
         });
         if (newValHtml && newValHtml !== this._content) {
           this._content = newValHtml;
           this.quill.setContents(newValHtml);
         } else if (!newValHtml) {
-          this.quill.setText('');
+          this.quill.setText("");
         }
       }
     },
-    disabled(newVal, oldVal) {
+    disabled(newVal) {
       this.setDisabled(newVal);
-    },
+    }
   },
+
+  mounted() {
+    this.initCustomToolbarIcon();
+    this.initialize();
+  },
+
+  beforeDestroy() {
+    this.quill = null;
+    delete this.quill;
+  },
+
   methods: {
     initCustomToolbarIcon() {
-      this.icons = Quill.import('ui/icons');
+      this.icons = Quill.import("ui/icons");
 
       forEach(ICON_SVGS, (iconValue, iconName) => {
         this.icons[iconName] = iconValue;
@@ -143,27 +167,27 @@ export default {
     initialize() {
       const quillEditor = this.$refs.quillEditor;
       const quill = new Quill(quillEditor, {
-        debug: 'warn',
+        debug: "warn",
         modules: {
           table: true,
           imageResize: {},
           imageUploader: {
-            upload: (file) => this.actImageUploadHandler(file),
+            upload: file => this.actImageUploadHandler(file)
           },
           htmlSource: {},
           toolbar: {
             container: this.toolbar || toolbar,
             handlers: {
               table: this.actTableHandler,
-              'table-insert-row': this.actTableInsertRowHandler,
-              'table-insert-column': this.actTableInsertColumnHandler,
-              'table-delete-row': this.actTableDeleteRowHandler,
-              'table-delete-column': this.actTableDeleteColumnHandler,
-            },
-          },
+              "table-insert-row": this.actTableInsertRowHandler,
+              "table-insert-column": this.actTableInsertColumnHandler,
+              "table-delete-row": this.actTableDeleteRowHandler,
+              "table-delete-column": this.actTableDeleteColumnHandler
+            }
+          }
         },
-        placeholder: this.placeholder || 'Insert text here ...',
-        theme: this.theme,
+        placeholder: this.placeholder || "Insert text here ...",
+        theme: this.theme
       });
       this.quill = quill;
 
@@ -172,16 +196,16 @@ export default {
       if (this.value || this.content) {
         const delta = this.value || this.content;
         if (Array.isArray(delta)) {
-          this.quill.setContents(delta, 'silent');
+          this.quill.setContents(delta, "silent");
         } else {
           const htmlData = this.quill.clipboard.convert({
-            html: delta,
+            html: delta
           });
-          this.quill.setContents(htmlData, 'silent');
+          this.quill.setContents(htmlData, "silent");
         }
       }
 
-      if (this.theme === 'snow' && this.showFullButton) {
+      if (this.theme === "snow" && this.showFullButton) {
         this.initFullBtn();
       }
 
@@ -189,47 +213,47 @@ export default {
         this.quill.enable(true);
       }
 
-      quill.on('text-change', (delta, oldDelta, source) => {
+      quill.on("text-change", () => {
         let html = this.$refs.quillEditor.children[0].innerHTML;
         const quill = this.quill;
         const text = this.quill.getText();
-        if (html === '<p><br></p>') html = '';
+        if (html === "<p><br></p>") html = "";
         this._content = html;
-        this.$emit('change', { html, text, quill });
+        this.$emit("change", { html, text, quill });
       });
 
-      quill.on('selection-change', (range) => {
+      quill.on("selection-change", range => {
         if (!range) {
-          this.$emit('blur', this.quill);
+          this.$emit("blur", this.quill);
         } else {
-          this.$emit('focus', this.quill);
+          this.$emit("focus", this.quill);
         }
       });
 
-      this.$emit('init', quill, this);
+      this.$emit("init", quill, this);
     },
 
     initFullBtn() {
       const childs = this.$refs.quillEditorBox.children;
-      const fullBtn = document.createElement('SPAN');
-      fullBtn.className = 'ql-formats ql-resize';
-      fullBtn.style = 'float: right;margin-right: 0;';
+      const fullBtn = document.createElement("SPAN");
+      fullBtn.className = "ql-formats ql-resize";
+      fullBtn.style = "float: right;margin-right: 0;";
       const that = this;
       function setSizeBtn() {
-        let icon = '';
+        let icon = "";
         if (that.isFullscreen) {
           icon = that.icons.minsize;
         } else {
           icon = that.icons.maxsize;
         }
         fullBtn.innerHTML =
-          '<button type="button" class="ql-fullscreen">' + icon + '</button>';
+          '<button type="button" class="ql-fullscreen">' + icon + "</button>";
       }
 
       setSizeBtn();
 
       fullBtn.addEventListener(
-        'click',
+        "click",
         () => {
           this.isFullscreen = !this.isFullscreen;
           setSizeBtn();
@@ -237,7 +261,7 @@ export default {
         false
       );
       for (let i in childs) {
-        if (childs[i].className.indexOf('ql-toolbar') > -1) {
+        if (childs[i].className.indexOf("ql-toolbar") > -1) {
           childs[i].append(fullBtn);
           break;
         }
@@ -248,77 +272,77 @@ export default {
       this.quill.enable(!val);
     },
 
-    getContent(val) {
+    getContent() {
       return this.quill.container.firstChild.innerHTML;
     },
 
     actTableHandler() {
-      this.quill.getModule('table').insertTable(2, 3);
+      this.quill.getModule("table").insertTable(2, 3);
     },
 
     actTableInsertRowHandler() {
-      this.quill.getModule('table').insertRowBelow();
+      this.quill.getModule("table").insertRowBelow();
     },
 
     actTableInsertColumnHandler() {
-      this.quill.getModule('table').insertColumnRight();
+      this.quill.getModule("table").insertColumnRight();
     },
 
     actTableDeleteRowHandler() {
-      this.quill.getModule('table').deleteRow();
+      this.quill.getModule("table").deleteRow();
     },
 
     actTableDeleteColumnHandler() {
-      this.quill.getModule('table').deleteColumn();
+      this.quill.getModule("table").deleteColumn();
     },
 
     actImageUploadHandler(file) {
       return new Promise((resolve, reject) => {
         const { type, name } = file;
         const { path, url } = this.signedParams;
-        const filePath = path + '/' + name;
+        const filePath = path + "/" + name;
         const fileType = type;
         const signedUrl = url;
 
         try {
           return axios({
-            method: 'POST',
+            method: "POST",
             url: signedUrl,
             headers: {
-              'Content-Type': 'application/json',
+              "Content-Type": "application/json"
             },
-            data: { filePath, fileType },
-          }).then((res) => {
+            data: { filePath, fileType }
+          }).then(res => {
             const { status: statusHeader, data } = res;
-            if (statusHeader !== 200) reject('Upload failed');
+            if (statusHeader !== 200) reject(new Error("Upload failed"));
             const { signedRequest, url, status } = data;
-            if (!status) reject('Upload failed');
+            if (!status) reject(new Error("Upload failed"));
             axios
               .put(signedRequest, file, {
                 headers: {
-                  'Content-Type': fileType,
-                },
+                  "Content-Type": fileType
+                }
               })
-              .then((res) => {
-                if (!res.status) reject('Upload failed');
+              .then(res => {
+                if (!res.status) reject(new Error("Upload failed"));
                 resolve(url);
               })
-              .catch(function (error) {
-                console.error('Error:', error);
-                reject('Upload failed');
+              .catch(function(error) {
+                console.error("Error:", error);
+                reject(new Error("Upload failed"));
               });
           });
-        } catch (err) {
-          console.error('Error:', error);
-          reject('Upload failed');
+        } catch (error) {
+          console.error("Error:", error);
+          reject(new Error("Upload failed"));
         }
       });
-    },
-  },
-
-  mounted() {
-    this.initCustomToolbarIcon();
-    this.initialize();
-  },
+    }
+  }
 };
 </script>
+
+<style src="quill/dist/quill.snow.css"></style>
+<style src="quill/dist/quill.core.css"></style>
+<style src="quill/dist/quill.bubble.css"></style>
+<style src="./assets/quill-editor.css" lang="css"></style>
