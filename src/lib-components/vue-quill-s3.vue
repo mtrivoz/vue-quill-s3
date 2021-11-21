@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import _Quill from "quill";
+import Quill from "quill";
 import toolbar from "./helpers/toolbar.js";
 import ICON_SVGS from "./helpers/icons.js";
 import ImageUploader from "./modules/image-uploader/index.js";
@@ -32,7 +32,6 @@ import "quill/dist/quill.core.css"
 import "quill/dist/quill.bubble.css"
 import "./assets/quill-editor.css"
 
-const Quill = window.Quill || _Quill
 
 Quill.register("modules/imageUploader", ImageUploader);
 Quill.register("modules/imageResize", ImageResize);
@@ -72,14 +71,10 @@ export default {
     },
     signedParams: {
       type: Object,
-      // default: () => ({
-      //   path: "",
-      //   url: ""
-      // })
       default: () => ({
-        path: "news/tepm",
-        url: "https://api.boholight.co/upload/publish"
-      })
+        path: "",
+        url: ""
+      })      
     },
     theme: {
       type: String,
@@ -157,7 +152,7 @@ export default {
 
   methods: {
     initCustomToolbarIcon() {
-      this.icons = Quill.import("ui/icons");
+      this.icons = this.Quill.import("ui/icons");
 
       forEach(ICON_SVGS, (iconValue, iconName) => {
         this.icons[iconName] = iconValue;
@@ -166,7 +161,7 @@ export default {
 
     initialize() {
       const quillEditor = this.$refs.quillEditor;
-      const quill = new Quill(quillEditor, {
+      const quill = new this.Quill(quillEditor, {
         debug: "warn",
         modules: {
           table: true,
