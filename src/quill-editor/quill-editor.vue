@@ -296,7 +296,7 @@ export default {
         const { path, url } = this.signedParams
         const slugName = convertToSlug(name.split('.').slice(0, -1).join('.'))
         const extName = name.split('.').pop()
-        const filePath = path + '/' + slugName + '.' + extName
+        const filePath = path + '/' + new Date().getTime() + '-' + slugName + '.' + extName
         const fileType = type
         const signedUrl = url
 
