@@ -1,6 +1,6 @@
 {
   "name": "@natpkg/vue-quill-s3",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "vue, quill, s3, Wysiwyg",
   "author": "natpkg",
   "license": "MIT",

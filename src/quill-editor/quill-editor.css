@@ -7,6 +7,9 @@
 .quill-editor .ql-container{
   min-height: 250px;
 }
+.quill-editor .ql-toolbar.ql-snow .ql-formats{
+  line-height: 22px;
+}
 
 .quill-editor .ql-toolbar.ql-snow{
   box-sizing: border-box;
