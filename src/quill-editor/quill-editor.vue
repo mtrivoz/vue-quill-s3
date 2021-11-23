@@ -112,10 +112,8 @@ export default {
           html: newVal
         })
         if (newValHtml && newValHtml !== this._content) {
-          const index = this.quill.getSelection().index
           this._content = newValHtml
           this.quill.setContents(newValHtml)
-          this.quill.setSelection(index)
         } else if (!newVal) {
           this.quill.setText('')
         }
@@ -128,10 +126,8 @@ export default {
           html: newVal
         })
         if (newValHtml && newValHtml !== this._content) {
-          const index = this.quill.getSelection().index
           this._content = newValHtml
           this.quill.setContents(newValHtml)
-          this.quill.setSelection(index)
         } else if (!newValHtml) {
           this.quill.setText('')
         }
@@ -217,7 +213,6 @@ export default {
         if (html === '<p><br></p>') html = ''
         this._content = html
         this.$emit('change', { html, text, quill })
-        this.$emit('input', html)
       })
 
       quill.on('selection-change', (range) => {
