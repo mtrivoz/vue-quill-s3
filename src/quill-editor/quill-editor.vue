@@ -21,7 +21,6 @@
 import Quill from 'quill'
 import toolbar from './helpers/toolbar.js'
 import ICON_SVGS from './helpers/icons.js'
-import ImageUploader from './modules/image-uploader/index.js'
 import ImageResize from 'quill-image-resize-module-withfix'
 import QuillHtmlSourceButton from './modules/view-source/index.js'
 import forEach from 'lodash/forEach'
@@ -33,7 +32,6 @@ import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.bubble.css'
 import './quill-editor.css'
 
-Quill.register('modules/imageUploader', ImageUploader)
 Quill.register('modules/imageResize', ImageResize)
 Quill.register('modules/htmlSource', QuillHtmlSourceButton)
 
@@ -153,7 +151,11 @@ export default {
       this.icons = this.Quill.import('ui/icons')
 
       forEach(ICON_SVGS, (iconValue, iconName) => {
-        this.icons[iconName] = iconValue
+        if (iconName === 'header-3') {
+          this.icons.header[3] = iconValue
+        } else {
+          this.icons[iconName] = iconValue
+        }
       })
     },
 
@@ -164,8 +166,8 @@ export default {
         modules: {
           table: true,
           imageResize: {},
-          imageUploader: {
-            upload: (file) => this.actImageUploadHandler(file)
+          uploader: {
+            handler: (range, files) => this.actImageUploadHandler(range, files)
           },
           htmlSource: {},
           toolbar: {
@@ -289,48 +291,56 @@ export default {
       this.quill.getModule('table').deleteColumn()
     },
 
-    actImageUploadHandler (file) {
-      return new Promise((resolve, reject) => {
-        const { type, name } = file
-        const { path, url } = this.signedParams
-        const slugName = convertToSlug(name.split('.').slice(0, -1).join('.'))
-        const extName = name.split('.').pop()
-        const filePath =
+    actImageUploadHandler (range, files) {
+      const promises = files.map(file => {
+        return new Promise((resolve, reject) => {
+          const { type, name } = file
+          const { path, url } = this.signedParams
+          const slugName = convertToSlug(name.split('.').slice(0, -1).join('.'))
+          const extName = name.split('.').pop()
+          const filePath =
           path + '/' + new Date().getTime() + '-' + slugName + '.' + extName
-        const fileType = type
-        const signedUrl = url
+          const fileType = type
+          const signedUrl = url
 
-        try {
-          return axios({
-            method: 'POST',
-            url: signedUrl,
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            data: { filePath, fileType }
-          }).then((res) => {
-            const { status: statusHeader, data } = res
-            if (statusHeader !== 200) reject(new Error('Upload failed'))
-            const { signedRequest, url, status } = data
-            if (!status) reject(new Error('Upload failed'))
-            axios
-              .put(signedRequest, file, {
-                headers: {
-                  'Content-Type': fileType
-                }
-              })
-              .then((res) => {
-                if (!res.status) reject(new Error('Upload failed'))
-                resolve(url)
-              })
-              .catch(function (error) {
-                console.error('Error:', error)
-                reject(new Error('Upload failed'))
-              })
-          })
-        } catch (error) {
-          console.error('Error:', error)
-          reject(new Error('Upload failed'))
+          try {
+            return axios({
+              method: 'POST',
+              url: signedUrl,
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              data: { filePath, fileType }
+            }).then((res) => {
+              const { status: statusHeader, data } = res
+              if (statusHeader !== 200) reject(new Error('Upload failed'))
+              const { signedRequest, url, status } = data
+              if (!status) reject(new Error('Upload failed'))
+              axios
+                .put(signedRequest, file, {
+                  headers: {
+                    'Content-Type': fileType
+                  }
+                })
+                .then((res) => {
+                  if (!res.status) reject(new Error('Upload failed'))
+                  resolve(url)
+                })
+                .catch(function (error) {
+                  console.error('Error:', error)
+                  reject(new Error('Upload failed'))
+                })
+            })
+          } catch (error) {
+            console.error('Error:', error)
+            reject(new Error('Upload failed'))
+          }
+        })
+      })
+
+      Promise.all(promises).then(images => {
+        for (let i = 0; i < images.length; i++) {
+          this.quill.insertEmbed(range.index + i, 'image', `${images[i]}`, 'user')
         }
       })
     }
