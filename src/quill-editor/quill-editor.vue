@@ -19,6 +19,7 @@
 
 <script>
 import Quill from 'quill'
+// import Uploader from 'quill/modules/uploader'
 import toolbar from './helpers/toolbar.js'
 import ICON_SVGS from './helpers/icons.js'
 import ImageResize from 'quill-image-resize-module-withfix'
@@ -160,6 +161,7 @@ export default {
     },
 
     initialize () {
+      // Uploader.DEFAULTS.mimetypes = ['image/png', 'image/jpeg', 'image/gif']
       const quillEditor = this.$refs.quillEditor
       const quill = new this.Quill(quillEditor, {
         debug: 'warn',
@@ -167,6 +169,7 @@ export default {
           table: true,
           imageResize: {},
           uploader: {
+            mimetypes: ['image/png', 'image/jpeg', 'image/gif'],
             handler: (range, files) => this.actImageUploadHandler(range, files)
           },
           htmlSource: {},
